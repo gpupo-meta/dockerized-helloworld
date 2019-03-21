@@ -15,4 +15,10 @@ declare(strict_types=1);
  *
  */
 
-phpinfo();
+namespace Gpupo\DockerizedHelloworld\Console;
+
+use Gpupo\CommonSdk\Console\AbstractApplication;
+
+final class Application extends AbstractApplication
+{
+}

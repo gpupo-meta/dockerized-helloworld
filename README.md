@@ -84,13 +84,25 @@ http://dockerized-helloworld.localhost/phpinfo.php você acessa informações so
 
 Em http://phpmyadmin-dockerized-helloworld.localhost você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
 
-## CLI
-
-Acesso ao terminal, do serviço *Interpretador*:
+**Passo 4**, acesso ao terminal do serviço *Interpretador*:
 
 	docker-compose exec php-fpm bash
 
 Você verá que ao executar o comando acima é lançado para o ambiente virtualizado onde o diretório atual é ``/var/www/app``.
 
 Se você listar os arquivos do diretório  ``/var/www/app`` verá que são **exatamente** os mesmos da raiz deste projeto.
-Isto se dá pelo fato que que mapeamos os diretórios nos parâmetros ``volumes`` existentes nos arquivos **docker-compose*.yaml**
+Isto se dá pelo fato que que [mapeamos o diretório](https://docs.docker.com/compose/compose-file/#volumes) nos parâmetros ``volumes`` existentes nos arquivos __docker-compose*.yaml__
+
+
+Apesar de você ter instalado em seu sistema operacional, todo um conjunto de interpretadores como por exemplo o PHP, preferenciamente os comandos de manutenção e execução relacionados ao projeto devem ser executados a partir do serviço (container), que possui a versão, configuração e ferramentas escolhidas para o projeto. Após acessar o terminal do serviço *Interpretador*, instale as dependências:
+
+	make install
+
+
+Você pode agora chamar o APP CLI deste projeto:
+
+	bin/dockerized-helloworld
+
+Execução do "Hello World":
+
+	bin/dockerized-helloworld greeting "Arnold Schwarzenegger"

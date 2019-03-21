@@ -1,0 +1,8 @@
+/build/
+/vendor/
+/var/
+Resources/*
+*.phar
+*.lock
+*.cache
+phpunit.xml

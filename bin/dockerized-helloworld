@@ -1,7 +1,5 @@
+#!/usr/bin/env php
 <?php
-
-declare(strict_types=1);
-
 /*
  * This file is part of gpupo/dockerized-helloworld
  * Created by Gilmar Pupo <contact@gpupo.com>
@@ -15,4 +13,9 @@ declare(strict_types=1);
  *
  */
 
-phpinfo();
+namespace Gpupo\DockerizedHelloworld\Console;
+
+require './config/bootstrap.php';
+
+$app = new Application("dockerized-helloworld");
+$app->init(__NAMESPACE__, dirname(__DIR__));

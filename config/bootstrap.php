@@ -15,4 +15,14 @@ declare(strict_types=1);
  *
  */
 
-phpinfo();
+use Symfony\Component\Dotenv\Dotenv;
+
+if (!class_exists('\Gpupo\Common\Console\Application')) {
+    require __DIR__.'/../vendor/autoload.php';
+}
+
+if (!class_exists(Dotenv::class)) {
+    throw new RuntimeException('Please run "composer install" before to call this app.');
+}
+
+(new Dotenv())->loadEnv(dirname(__DIR__).'/.env');
