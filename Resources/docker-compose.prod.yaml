@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+    php-fpm:
+        image: gpupo/container-orchestration:php-fpm
+        env_file:
+            - .env
+            - .env.prod
+        volumes:
+            - $PWD:/var/www/app
+        networks:
+            - backend
+    nginx-upstream:
+        image: gpupo/container-orchestration:nginx-upstream
+        env_file:
+            - .env
+            - .env.prod
+        expose:
+            - 80
+        links:
+            - php-fpm
+        volumes:
+            - $PWD:/var/www/app/
+        networks:
+            - default
+            - backend
+        environment:
+            - PHP_SERVER=php-fpm
+networks:
+    default:
+        external:
+            name: nginx-proxy
+    backend:
