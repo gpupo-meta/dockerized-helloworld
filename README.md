@@ -21,7 +21,7 @@ Até aqui, nosso conjunto de serviços está assim:
 
 Isso exemplifica uma solução comum, mas vamos nos aprofundar um pouco no nosso modo de trabalho:
 
-Se cada conjunto de serviços possui um *Webserver* que responde na porta 80 da máquina do programador, então somente um projeto pode estar levantado por vez, ou então cada projeto precisa de uma porta exclusiva. Imagine a situação caótica disto em um ambiente de produção. No nosso modo de trabalho, cada projeto recebe como parâmetro um subdominio (ex: http://helloworld.localhost) e seu webserver não atende em porta pública, mas sim conecta-se ao serviço [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) (ver Ambiente de trabalho >> *Webserver* local) que fará o devido roteamento assim que o browser requisitar pelo subdominio configurado.
+Se cada conjunto de serviços possui um *Webserver* que responde na porta 80 da máquina do programador, então somente um projeto pode estar levantado por vez, ou então cada projeto precisa de uma porta exclusiva. Imagine a situação caótica disto em um ambiente de produção. Para resolver isso, cada projeto recebe como parâmetro um subdominio (ex: http://helloworld.localhost) e seu webserver *não* atende em porta pública, mas sim conecta-se ao serviço [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) que fará o devido roteamento assim que o browser requisitar pelo subdominio configurado.
 
 Também neste ponto, temos uma questão a ser tratada: O serviço do banco de dados. Em um ambiente de desenvolvimento, precisamos de uma base local para testes funcionais, desenvolvimento, testes unitários, etc ... mas no ambiente de produção não precisamos do serviço de banco de dados pois este roda em local diferente da aplicação.
 
@@ -47,10 +47,39 @@ Nosso conjunto de serviços DEV neste momento está assim:
 2.  PHP-DEV (*Interpretador* )- Acessível somente pelo *Webserver* ou via docker exec, atende a pedidos do *Webserver*, conecta-se ao *Banco de dados*, possui ferramentas CLI;
 3.  MariaDB (*Banco de dados*), acessível somente pelo serviço *Interpretador* .
 
-Em alguns projetos que usam apenas linha de comando (CLI), o serviço *Webserver* é dispensável. No exemplo de configuração [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml)usa-se a imagem gpupo/container-orchestration:symfony-dev para o serviço de nome ``php-fpm``.
+Em alguns projetos que usam apenas linha de comando (CLI), o serviço *Webserver* é dispensável. No exemplo de configuração [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) usa-se a imagem gpupo/container-orchestration:symfony-dev para o serviço de nome ``php-fpm``.
 
 A imagem pública [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gpupo/container-orchestration/tags) é uma extensão da imagem oficial ``php-fpm`` sobre debian com a adição de ferramentas necessárias ao desenvolvimento PHP e também de atividades com NodeJS para trabalho com o Webpack.
 
 Para padronizar e facilitar automatização, o serviço do interpretador sempre recebe o nome "*php-fpm*".
 
 Este atual projeto possibilita um "mão na massa" de acordo com essa explicação.
+
+---
+
+## Setup
+
+Este projeto considera que você já possui o Docker e o Docker Compose instalado em seu sistema operacional.
+
+Passo 1, levantar o [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/):
+
+	git clone https://github.com/gpupo/httpd-gateway.git;
+	pushd httpd-gateway;
+	make setup;
+	make alone;
+	popd;
+
+Passo 2, clonar e levantar este projeto:
+
+	git clone git@github.com:gpupo-meta/dockerized-helloworld.git;
+	cd dockerized-helloworld;
+	docker-compose up -d;
+
+Passo 3, testar o acesso a http://dockerized-helloworld.localhost ou se preferir, via linha de comando:
+
+	curl http://dockerized-helloworld.localhost
+
+Em
+http://dockerized-helloworld.localhost/phpinfo.php você acessa informações sobre o serviço PHP em uso.
+
+Em http://phpmyadmin-dockerized-helloworld.localhost você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)

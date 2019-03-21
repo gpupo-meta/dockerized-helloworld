@@ -11,11 +11,12 @@ services:
             - backend
         links:
             - redis
+            - mariadb
     mariadb:
         image: mariadb
         restart: always
-        ports:
-          - 3306:3306
+        expose:
+          - 3306
         environment:
           MYSQL_ROOT_PASSWORD: mas7er
         networks:
