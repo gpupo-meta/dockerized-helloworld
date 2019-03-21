@@ -1,5 +1,3 @@
-# dockerized-helloworld
-
 ## Conceito
 
 Dockerized Applications rodam em [containers](https://www.docker.com/resources/what-container) e possuem um conjunto de serviços. Seguindo as melhores práticas, para cada responsabilidade é criado (preferencialmente) um serviço.
@@ -29,7 +27,7 @@ Então possuímos dois conjuntos de serviços: Um para desenvolvimento e outro r
 
 ### Docker Compose File
 
-Esses conjuntos são definidos no arquivo docker-compose.yaml, então em um projeto temos duas versões destas configurações ``Resources/docker-compose.dev.yaml`` e ``Resources/docker-compose.prod.yaml`` e o desenvolvedor faz um link simbólico para a raiz do projeto:
+Esses conjuntos são definidos no arquivo ``docker-compose.yaml``, então em um projeto temos duas versões destas configurações ``Resources/docker-compose.dev.yaml`` e ``Resources/docker-compose.prod.yaml`` e o desenvolvedor faz um link simbólico para a raiz do projeto:
 
 	ln -sn Resources/docker-compose.dev.yaml ./docker-compose.yaml
 
@@ -78,6 +76,8 @@ Este projeto considera que você já possui o Docker e o Docker Compose instalad
 **Passo 3**, testar o acesso a http://dockerized-helloworld.localhost ou se preferir, via linha de comando:
 
 	curl http://dockerized-helloworld.localhost
+
+## Uso
 
 Em
 http://dockerized-helloworld.localhost/phpinfo.php você acessa informações sobre o serviço PHP em uso.
