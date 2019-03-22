@@ -1,6 +1,15 @@
 ---
 layout: default
 ---
+Este projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares mas
+**não** trata da criação e [manutenção de imagens](https://opensource.gpupo.com/container-orchestration/).
+
+## Requisitos
+
+Os exemplos abaixo são escritos para execução em um terminal linux, mas você pode facilmente executá-los em outro sistema operacional com alguns ajustes.
+
+Este projeto considera que você já possui o [Docker](https://docs.docker.com/release-notes/docker-ce/) e o [Docker Compose](https://docs.docker.com/compose/install/) instalado em seu sistema operacional(veja [ gpupo-meta/setup-machine](https://github.com/gpupo-meta/setup-machine)).
+
 ## Containers e Serviços
 
 Dockerized Applications rodam em [containers](https://www.docker.com/resources/what-container) e possuem um conjunto de serviços. Seguindo as melhores práticas, para cada responsabilidade é criado (preferencialmente) um serviço.
@@ -64,7 +73,6 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 
 ## Setup
 
-Este projeto considera que você já possui o Docker e o Docker Compose instalado em seu sistema operacional(veja [ gpupo-meta/setup-machine](https://github.com/gpupo-meta/setup-machine)).
 
 **Passo 1**, levantar o [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/):
 
@@ -116,6 +124,12 @@ Execução do "Hello World":
 
 ---
 
+## Leitura recomendada
+
+* [Docker Quick Start](https://docs.docker.com/get-started/)
+
+---
+
 ## Dúvidas?
 
 Se você precisa de ajuda para entender um dos conceitos acima, [crie uma issue](https://github.com/gpupo-meta/dockerized-helloworld/issues/new),
@@ -126,3 +140,18 @@ e marque-a com o **label** ``question``.
 ## Contribuição
 
 Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues).
+
+---
+
+# Side Quests
+
+A partir deste ponto, a exploração de uma stack tradicional como a LAMP já ficou para trás.
+A seguir temos incrementos que lidam com a forma de trabalho usando a imagem [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gpupo/container-orchestration/tags) e outras ferramentas do namespace ``Gpupo`` e ``GpupoMeta``.
+
+## Pacotes NPM / Yarn
+
+Para a gestão de dependências CSS/Javascript utilizamos o YARN que já está devidamente instalado e configurado na imagem gpupo/container-orchestration:symfony-dev utilizada no service PHP-FPM do Stack de desenvolvimento (ver Ambiente de trabalho >> Virtualização).
+
+Existindo a necessidade de acrescentar um pacote ao projeto, consultamos https://www.npmjs.com/  ou https://yarnpkg.com para encontrar o identificador do pacote.
+
+Exemplo: ``babel-plugin-transform-es2015-parameters``
