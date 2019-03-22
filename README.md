@@ -2,12 +2,12 @@
 
 Dockerized Applications rodam em [containers](https://www.docker.com/resources/what-container) e possuem um conjunto de serviços. Seguindo as melhores práticas, para cada responsabilidade é criado (preferencialmente) um serviço.
 
-Exemplificando, em uma solução popular como a tradicional [LAMP](https://en.wikipedia.org/wiki/LAMP_%28software_bundle%29), temos as seguintes responsabilidades:
+Exemplificando, em uma solução ([stack](https://en.wikipedia.org/wiki/Solution_stack)) popular como a tradicional [LAMP](https://en.wikipedia.org/wiki/LAMP_%28software_bundle%29), temos as seguintes responsabilidades:
 
-1.  (L) Linux, sistema operacional com suporte ao Filesystem, Ferramentas CLI, e  suporte aos softwares instalados;
-2.  (A) Apache, um webserver instalado e configurado sobre o OS (L);
-3.  (M) *Banco de dados* instalado e configurado sobre o OS (L);
-4.  (P) PHP, interpretador instalado sobre L.
+1.  (**L**) Linux, sistema operacional com suporte ao Filesystem, Ferramentas CLI, e  suporte aos softwares instalados;
+2.  (**A**) Apache, um webserver instalado e configurado sobre o OS (**L**);
+3.  (**M**) *Banco de dados* instalado e configurado sobre o OS (**L**);
+4.  (**P**) PHP, interpretador instalado sobre **L**.
 
 Ao convertermos esse tipo de solução, devemos naturalmente pensar em 4 serviços (L, A, M e P). Entretanto, L deixa de ser fundamental pois o suporte ao Filesystem e aos Softwares já existe na dinâmica inerente de uma imagem/container. Então, as Ferramentas CLI ficam sob responsabilidade do serviço *Interpretador* (P).
 
@@ -41,9 +41,9 @@ Por exemplo, a extensão ``php-xdebug`` existe na imagem do ambiente de desenvol
 
 Nosso conjunto de serviços ``DEV`` neste momento está assim:
 
-1.  NGINX (*Webserver*) - Acessível via proxy, recebe as requisições, responde com processamento feito pelo serviço interpretador;
-2.  PHP-DEV (*Interpretador* )- Acessível somente pelo *Webserver* ou via docker exec, atende a pedidos do *Webserver*, conecta-se ao *Banco de dados*, possui ferramentas CLI;
-3.  MariaDB (*Banco de dados*), acessível somente pelo serviço *Interpretador* .
+1.  NGINX (**Webserver**) - Acessível via proxy, recebe as requisições, responde com processamento feito pelo serviço interpretador;
+2.  PHP-FPM (**Interpretador** )- Acessível somente pelo **Webserver** ou via docker exec, atende a pedidos do **Webserver**, conecta-se ao **Banco de dados**, possui ferramentas CLI;
+3.  MariaDB (**Banco de dados**), acessível somente pelo serviço **Interpretador** .
 
 No exemplo de configuração [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) usa-se a imagem gpupo/container-orchestration:symfony-dev para o serviço de nome ``php-fpm``.
 
@@ -51,7 +51,7 @@ A imagem pública [gpupo/container-orchestration:symfony-dev](https://hub.docker
 
 Para padronizar e facilitar automatização, o serviço do interpretador sempre recebe o nome "*php-fpm*".
 
-Este atual projeto possibilita um "mão na massa" de acordo com essa explicação.
+Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/Hands_on) de acordo com essa explicação.
 
 ---
 
@@ -106,3 +106,9 @@ Você pode agora chamar o APP CLI deste projeto:
 Execução do "Hello World":
 
 	bin/dockerized-helloworld greeting "Arnold Schwarzenegger"
+
+---
+
+## Contribua
+
+Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request)
