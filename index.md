@@ -116,6 +116,13 @@ Execução do "Hello World":
 
 ---
 
+## Dúvidas?
+
+Se você precisa de ajuda para entender um dos conceitos acima, [crie uma issue](https://github.com/gpupo-meta/dockerized-helloworld/issues/new),
+e marque-a com o **label** ``question``.
+
+---
+
 ## Contribuição
 
-Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request)
+Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues).
