@@ -1,4 +1,4 @@
-## Conceito
+## Containers e Serviços
 
 Dockerized Applications rodam em [containers](https://www.docker.com/resources/what-container) e possuem um conjunto de serviços. Seguindo as melhores práticas, para cada responsabilidade é criado (preferencialmente) um serviço.
 
@@ -21,21 +21,21 @@ Isso exemplifica uma solução comum, mas vamos nos aprofundar um pouco no nosso
 
 Se cada conjunto de serviços possui um *Webserver* que responde na porta 80 da máquina do programador, então somente um projeto pode estar levantado por vez, ou então cada projeto precisa de uma porta exclusiva. Imagine a situação caótica disto em um ambiente de produção. Para resolver isso, cada projeto recebe como parâmetro um subdominio (ex: http://helloworld.localhost) e seu webserver *não* atende em porta pública, mas sim conecta-se ao serviço [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) que fará o devido roteamento assim que o browser requisitar pelo subdominio configurado.
 
-Também neste ponto, temos uma questão a ser tratada: O serviço do banco de dados. Em um ambiente de desenvolvimento, precisamos de uma base local para testes funcionais, desenvolvimento, testes unitários, etc ... mas no ambiente de produção não precisamos do serviço de banco de dados pois este roda em local diferente da aplicação.
+Também neste ponto, temos uma questão a ser tratada: O serviço do *Banco de dados*. Em um ambiente de desenvolvimento, precisamos de uma base local para testes funcionais, desenvolvimento, testes unitários, etc ... mas no ambiente de produção não precisamos do serviço de banco de dados pois este roda em local diferente da aplicação.
 
 Então possuímos dois conjuntos de serviços: Um para desenvolvimento e outro reduzido para o ambiente de produção.
 
-### Docker Compose File
+## Docker Compose File
 
 Esses conjuntos são definidos no arquivo ``docker-compose.yaml``, então em um projeto temos duas versões destas configurações ``Resources/docker-compose.dev.yaml`` e ``Resources/docker-compose.prod.yaml`` e o desenvolvedor faz um link simbólico para a raiz do projeto:
 
 	ln -sn Resources/docker-compose.dev.yaml ./docker-compose.yaml
 
-### NGINX + PHP-FPM + MariaDB
+## NGINX + PHP-FPM + MariaDB
 
 Ainda no nosso exemplo, baseado na conversão de uma stack LAMP, optamos por utilizar o webserver [NGINX](https://www.nginx.com/) ao invés do Apache e como usamos o PHP como serviço, nossa opção é pelo [PHP-FPM](https://secure.php.net/manual/pt_BR/install.fpm.php). A base de dados é [MariaDB](https://mariadb.org/).
 
-### Ambiente de desenvolvimento X Ambiente de produção
+## Ambiente de desenvolvimento X Ambiente de produção
 
 Para complicar um pouco mais, sabemos que no ambiente de produção não é necessário todos os pacotes que o ambiente de desenvolvimento utiliza, então, nosso serviço PHP no conjunto do desenvolvimento possui mais coisas que o mesmo serviço do conjunto de produção.
 
@@ -81,9 +81,9 @@ Este projeto considera que você já possui o Docker e o Docker Compose instalad
 
 	curl http://dockerized-helloworld.localhost
 
-## Uso
+## Execução
 
-Em
+Se tudo correu bem até aqui, em
 http://dockerized-helloworld.localhost/phpinfo.php você acessa informações sobre o serviço PHP em uso.
 
 Em http://phpmyadmin-dockerized-helloworld.localhost você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
@@ -113,6 +113,6 @@ Execução do "Hello World":
 
 ---
 
-## Contribua
+## Contribuição
 
 Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request)
