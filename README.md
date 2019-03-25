@@ -1,3 +1,5 @@
+# Main Quest
+
 Este projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares mas
 **não** trata da criação e [manutenção de imagens](https://opensource.gpupo.com/container-orchestration/).
 
@@ -147,6 +149,8 @@ A seguir temos incrementos que lidam com a forma de trabalho usando a imagem [gp
 
 ## NPM, Yarn, Babel e Webpack
 
+### Yarn
+
 Para a gestão de dependências CSS/Javascript utilizamos o YARN que já está devidamente instalado e configurado na imagem gpupo/container-orchestration:symfony-dev utilizada no service PHP-FPM do Stack de desenvolvimento.
 
 Assim como o comando ``composer install`` instala os pacotes **PHP** definidos em ``compose.json``, o comando ``yarn install`` instala os pacotes **NPM** definidos em ``package.json``.
@@ -157,6 +161,24 @@ Existindo a necessidade de acrescentar um pacote ao projeto, consultamos https:/
 
 	yarn add babel-plugin-transform-es2015-parameters --dev
 
+O exemplo acima adiciona um pacote que é carregado apenas no ambiente de desenvolvimento já que utilizamos o parâmetro ``--dev``.
+
+#### Compilando
+
+A partir das instruções de ``src/index.js`` será compilado o arquivo ``dist/main.js``
+
+	yarn build
+
+Podemos testar o resultado da seguinte maneira:
+
+	nodejs dist/main.js
+
+...
+
+## RELK
+
+RabbitMq / ElasticSerach  Logstash / Kibana  (RELK)
+
 
 ...
 
@@ -164,7 +186,7 @@ Existindo a necessidade de acrescentar um pacote ao projeto, consultamos https:/
 
 ...
 
----
+___
 
 # Todo list
 
