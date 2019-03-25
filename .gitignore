@@ -6,3 +6,4 @@ Resources/*
 *.lock
 *.cache
 phpunit.xml
+node_modules
