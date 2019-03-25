@@ -8,3 +8,6 @@ Resources/*
 phpunit.xml
 node_modules
 dist
+*tmp.*
+*.log
+public/build

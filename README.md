@@ -163,15 +163,45 @@ Existindo a necessidade de acrescentar um pacote ao projeto, consultamos https:/
 
 O exemplo acima adiciona um pacote que é carregado apenas no ambiente de desenvolvimento já que utilizamos o parâmetro ``--dev``.
 
-#### Compilando
+### Compilando
 
-A partir das instruções de ``src/index.js`` será compilado o arquivo ``dist/main.js``
+A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/js/helloworld.js``
 
 	yarn build
 
 Podemos testar o resultado da seguinte maneira:
 
-	nodejs dist/main.js
+	nodejs public/build/js/helloworld.js
+
+### Babel
+
+Uma escrita moderna de código javascript utiliza ``ES6`` também conhecido como ``ECMAScript 6`` ou ``ES2015``.
+Aqui entra o [Babel](https://babeljs.io/), um compilador Javascript que nos permite utilizar uma série de recursos ``ES6``.
+Não vou detalhar o uso do ``ES6`` aqui nesse documento mas logo abaixo seguem links para o aprendizado da sintaxe.
+Em nosso projetto ``dockerized-helloworld`` todas as ferramentas necessárias para compilar javascript ``ES6`` forma instaladas quando você executou ``yarn install``.
+
+O javascript ``assets/js/helloworld-ES2015.js`` foi compilado pelo ``yarn build`` em ``public/build/js/helloworld-ES2015.js``
+
+Podemos testar o resultado da seguinte maneira:
+
+	nodejs public/build/js/helloworld-ES2015.js
+
+Claro, para que tudo funcionasse foi preciso algumas configurações nos arquivos ``.babelrc`` (instruções para compilação), ``package.json`` (quais pacotes NPM instalar) e ``webpack.config.js`` (quais arquivos compilar e onde fazer o output).
+
+### SASS
+
+
+### Webpack
+
+
+### Leitura recomendada
+
+* [Learn ES2015](https://babeljs.io/docs/en/learn/)
+* [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/)
+* Google [ES2015](https://developers.google.com/web/shows/ttt/series-2/es2015)
+* [O Guia do ES6: TUDO que você precisa saber](https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc%C3%AA-precisa-saber-8c287876325f)
+* [Using Webpack 4 — A “really” quick start](https://medium.com/justfrontendthings/using-webpack-4-a-really-quick-start-under-4-minutes-61ff3fa9a2c8)
+* [How to include Bootstrap in your project with Webpack](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html)
 
 ...
 
