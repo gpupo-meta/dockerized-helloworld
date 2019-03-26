@@ -133,10 +133,7 @@ Execução do "Hello World":
 **Dúvidas?** Se você precisa de ajuda para entender um dos conceitos acima, [crie uma issue](https://github.com/gpupo-meta/dockerized-helloworld/issues/new),
 e marque-a com o **label** ``question``.
 
-## Contribuição
-
-Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues).
-Veja em **Todo list** algumas sugestões de coisas a fazer.
+![Game over image](https://meta.gpupo.com/dockerized-helloworld/img/gameover.png)
 
 # Side Quest: Javascript & CSS
 
@@ -218,7 +215,7 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 * [Sass Basics](https://sass-lang.com/guide)
 * [Webpack manual](https://webpack.js.org/concepts)
 
-#Side Quest - Extra services
+# Side Quest - Extra services
 
 A partir deste momento vamos incluir novos ``services`` em nosso projeto e para isso vamos deixar de usar o ``docker-compose file`` atual e passaremos a usar o arquivo ``Resources/docker-compose.extra-services.yaml``.
 
@@ -257,7 +254,9 @@ Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma
 3.  (**L**) Logstash;
 4.  (**K**) Kibana.
 
-# Side Quest - Make
+# Side Quest - Make/QA Tools
+
+## Make
 
 [Make](https://en.wikipedia.org/wiki/Make_(software%29) é uma ferramenta para automatização de build criada em 1976 e desenhada para resolver problemas durante o processo de build, originalmente usada em projetos de [linguagem C](https://en.wikipedia.org/wiki/C_(programming_language%29) e que passou a ser amplamente utilizada em projetos [Unix Like](https://en.wikipedia.org/wiki/Unix-like).
 
@@ -297,12 +296,48 @@ install:
 	yarn build
 ```
 
+Experimente o target ``bash`` que vai lhe lançar diretamente no bash do serviço ``PHP-FPM``:
+
+	make bash
+
+## QA Tools
+
+A imagem [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gpupo/container-orchestration/tags) possui ferramentas de [quality assurance](https://en.wikipedia.org/wiki/Software_quality_assurance) que nos ajudam a manter a qualidade da escrita e da engenharia.
+
+### Coding styles
+
+Uma ferramenta muito importante é o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) que vai alinhar o código escrito de acordo com as regras de padrão selecionados para o projeto.
+
+Neste projeto seguimos [PHP Standards Recommendations](https://www.php-fig.org/psr/)(PSR) e também padrões sugeridos pelo projeto [Symfony](https://symfony.com/) com objetivo facilitar a reutilização de código entre os diversos projetos que implementem determinado padrão.
+
+Se você ainda não está familiarizado com as PSRs, saiba que existem PSRs para implementações de [autoload](http://br1.php.net/manual/en/function.autoload.php)[ (](http://www.php-fig.org/psr/psr-4/)[PSR-4](http://www.php-fig.org/psr/psr-4/)), sugestões de estilos de código, como posição de chaves, indentação ([Usar tabulações ou espaços?](http://www.jwz.org/doc/tabs-vs-spaces.html)) ([PSR-1](http://www.php-fig.org/psr/psr-1/) e [PSR-2](http://www.php-fig.org/psr/psr-2/)).
+
+Existem também propostas em draft para padronização dos docblock de documentação ([PSR-5](https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md)) e uma interface para requisições HTTP ([PSR-7](https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md))
+
+Mais informações leia o[FAQ](https://www.php-fig.org/faqs/) e visite o [repositório no GitHub](https://github.com/php-fig/fig-standards) com os padrões já aceitos.
+
+#### Principais padrões de escrita adotados neste projeto
+
+*   [PSR-1: Basic Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
+*   [PSR-2: Coding Style Guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
+*   [PSR-4: Autoloading Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
+*   [PSR-5: PHPDoc (draft)](https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md)
+*   [Symfony Coding Standards](https://symfony.com/doc/current/contributing/code/standards.html)
+
+No arquivo [.php_cs.dist](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.php_cs.dist) é configurado este conjunto de regras.
+
+:whale:
+
+Agora vamos a um exemplo prático! 
+
+
+
 # Considerações finais
 
 ![Congratulations](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
 
 Muito bem, você zerou o jogo :)
 
-## Todo list
+Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues).
 
-Veja a [lista de melhorias](https://github.com/gpupo-meta/dockerized-helloworld/labels/enhancement) em aberto.
+Veja a [lista de melhorias](https://github.com/gpupo-meta/dockerized-helloworld/labels/enhancement) que precisam de desenvolvimento.
