@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # Main Quest
 
 Este projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares para o desenvolvimento de projeto web, mas
