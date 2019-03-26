@@ -42,11 +42,11 @@ Esses conjuntos são definidos no arquivo ``docker-compose.yaml``, então em um 
 
 	ln -sn Resources/docker-compose.dev.yaml ./docker-compose.yaml
 
-## NGINX + PHP-FPM + MariaDB
+### NGINX + PHP-FPM + MariaDB
 
 Ainda no nosso exemplo, baseado na conversão de uma stack LAMP, optamos por utilizar o webserver [NGINX](https://www.nginx.com/) ao invés do Apache e como usamos o PHP como serviço, nossa opção é pelo [PHP-FPM](https://secure.php.net/manual/pt_BR/install.fpm.php). A base de dados é [MariaDB](https://mariadb.org/).
 
-## Ambiente de desenvolvimento X Ambiente de produção
+### Ambiente de desenvolvimento X Ambiente de produção
 
 Para complicar um pouco mais, sabemos que no ambiente de produção não é necessário todos os pacotes que o ambiente de desenvolvimento utiliza, então, nosso serviço PHP no conjunto do desenvolvimento possui mais coisas que o mesmo serviço do conjunto de produção.
 
@@ -96,11 +96,6 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 Se tudo correu bem até aqui, em
 http://dockerized-helloworld.localhost/phpinfo.php você acessa informações sobre o serviço PHP em uso.
 
-## PhpMyAdmin (extra)
-
-Em http://phpmyadmin-dockerized-helloworld.localhost você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
-
-No arquivo [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) eu incluí o serviço que oferece o PhpMyAdmin, usando a imagem Docker oficial.
 
 **Passo 4**, acesso ao terminal do serviço **Interpretador**:
 
@@ -229,6 +224,12 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 
 #Side Quest - Extra services
 
+## PhpMyAdmin (extra)
+
+Em http://phpmyadmin-dockerized-helloworld.localhost você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
+
+No arquivo [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) eu incluí o serviço que oferece o PhpMyAdmin, usando a imagem Docker oficial.
+
 ## RELK
 
 RabbitMq / ElasticSerach  Logstash / Kibana  (RELK)
@@ -238,7 +239,10 @@ RabbitMq / ElasticSerach  Logstash / Kibana  (RELK)
 ## Redis
 
 ...[incomplete doc]
-___
+
+#Side Quest - Make
+
+...[incomplete doc]
 
 # Todo list
 
