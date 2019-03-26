@@ -15,7 +15,7 @@ Vários termos usados neste tutorial possuem links que facilitarão o entendimen
 
 Alguns comandos devem ser executados em seu terminal tradicional e quando for este o caso, o símbolo :computer: estará presente, porém outros comandos requerem a execução a partir do terminal virtualizado. Quando for este o caso, o símbolo :whale: estará próximo, indicando que a execução deve ser feita no bash do container. Como chegar lá ? Você vai aprender logo abaixo...
 
-Um último requisito importante é **paciência** e **dedicação** pois é bastante coisa pra ler, seguir referências, executar comandos, analizar diffs e refazer até entender. Pra te motivar e também responsabilizar, eu gastei várias horas de trabalho escrevendo este tutorial, tirando as melhores técnicas do meu vaú de tesouross, para que você aí do futuro aprendesse a usá-las, então, me dê algum crédito e esforço quando seguir com este tutorial, ou, se preferir algo mais facil, por [seguir por aqui](http://bfy.tw/Mw0J) ... 
+Um último requisito importante é **paciência** e **dedicação** pois é bastante coisa pra ler, seguir referências, executar comandos, analizar diffs e refazer até entender. Pra te motivar e também responsabilizar, eu gastei várias horas de trabalho escrevendo este tutorial, tirando as melhores técnicas do meu vaú de tesouross, para que você aí do futuro aprendesse a usá-las, então, me dê algum crédito e esforço quando seguir com este tutorial, ou, se preferir algo mais facil, por [seguir por aqui](http://bfy.tw/Mw0J) ...
 
 Se tudo estiver pronto, selecione seu player e vamos em frente.
 
@@ -335,6 +335,84 @@ Apesar de funcionar, o arquivo [src/Traits/VeryWrongCodeStyleTrait.php](https://
 Rode o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) :whale: :
 
 	make php-cs-fixer
+
+Se você executar um ``git diff`` verá algo assim:
+
+```diff
+diff --git a/src/Traits/VeryWrongCodeStyleTrait.php b/src/Traits/VeryWrongCodeStyleTrait.php
+index 94a3ec8..3a65c42 100644
+--- a/src/Traits/VeryWrongCodeStyleTrait.php
++++ b/src/Traits/VeryWrongCodeStyleTrait.php
+@@ -1,19 +1,30 @@
+ <?php
+
++declare(strict_types=1);
++
++/*
++ * This file is part of gpupo/dockerized-helloworld
++ * Created by Gilmar Pupo <contact@gpupo.com>
++ * For the information of copyright and license you should read the file
++ * LICENSE which is distributed with this source code.
++ * Para a informação dos direitos autorais e de licença você deve ler o arquivo
++ * LICENSE que é distribuído com este código-fonte.
++ * Para obtener la información de los derechos de autor y la licencia debe leer
++ * el archivo LICENSE que se distribuye con el código fuente.
++ * For more information, see <https://opensource.gpupo.com/>.
++ *
++ */
++
+ namespace Gpupo\DockerizedHelloworld\Traits;
+
+-use JMS\Serializer\Annotation as JMS,
+-    Doctrine\ODM\MongoDB\Mapping\Annotations as ODM,
+-    PDO;
++use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
++use JMS\Serializer\Annotation as JMS;
+
+ /**
+- * Very wrong code style
+- *
+- *
+- *
++ * Very wrong code style.
+  */
+-trait VeryWrongCodeStyleTrait {
+-
++trait VeryWrongCodeStyleTrait
++{
+     /**
+      * @var string
+      * @ODM\Field(type="string")
+@@ -25,9 +36,10 @@ trait VeryWrongCodeStyleTrait {
+     private $name;
+
+     /**
+-     * Set name
++     * Set name.
++     *
++     * @param string $name
+      *
+-     * @param  string $name
+      * @return mixed
+      */
+     public function setName($name)
+@@ -38,7 +50,7 @@ trait VeryWrongCodeStyleTrait {
+     }
+
+     /**
+-     * Get name
++     * Get name.
+      *
+      * @return string
+      */
+@@ -46,5 +58,4 @@ trait VeryWrongCodeStyleTrait {
+     {
+         return $this->name;
+     }
+-
+ }
+
+```
 
 
 

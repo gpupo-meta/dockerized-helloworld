@@ -94,13 +94,10 @@ phpunit:
 selfupdate:
 	cp -f vendor/gpupo/common/Makefile Makefile
 
-## Build and publish a github gh-pages branch
-gh-page:
-	mkdir -p docs/_layouts;
+## Build and publish
+publish:
 	echo "---" > docs/index.md;
 	echo "layout: default" >> docs/index.md;
 	echo "---" >> docs/index.md;
 	cat README.md  >> docs/index.md;
-	# mkdir -p docs/_layouts;
-	# cp -f vendor/gpupo/common/Resources/gh-pages-template/default.html docs/_layouts/
-	# cp -f vendor/gpupo/common/Resources/gh-pages-template/_config.yml docs/.;
+	git commit -am "Add info" && git push;
