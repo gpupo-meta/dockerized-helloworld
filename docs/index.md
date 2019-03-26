@@ -141,12 +141,12 @@ e marque-a com o **label** ``question``.
 
 ![Game over image](https://meta.gpupo.com/dockerized-helloworld/img/gameover.png)
 
-# Side Quest: Javascript & CSS
+# Side Quest: Javascript & CSS/ Webpack, SASS, ES2015
 
 A partir deste ponto, a exploração de uma stack tradicional como a LAMP já ficou para trás.
 A seguir temos incrementos que lidam com a forma de trabalho usando a imagem [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gpupo/container-orchestration/tags) e outras ferramentas [opensource.gpupo.com](https://opensource.gpupo.com).
 
-## Yarn/NPM/NodeJS
+### Yarn/NPM/NodeJS
 
 Para a gestão de dependências CSS/Javascript utilizamos o YARN que já está devidamente instalado e configurado na imagem gpupo/container-orchestration:symfony-dev utilizada no service PHP-FPM do Stack de desenvolvimento.
 
@@ -160,7 +160,7 @@ Existindo a necessidade de acrescentar um pacote ao projeto, consultamos https:/
 
 O exemplo acima adiciona um pacote que é carregado apenas no ambiente de desenvolvimento já que utilizamos o parâmetro ``--dev``.
 
-### Compilando (build)
+#### Compilando (build)
 
 A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/helloworld.min.js`` : :whale:
 
@@ -170,7 +170,7 @@ Podemos testar o resultado da seguinte maneira : :whale:
 
 	nodejs public/build/helloworld.min.js
 
-## Babel/ES2015
+### Babel/ES2015
 
 Uma escrita moderna de código javascript utiliza ``ES6`` também conhecido como ``ECMAScript 6`` ou ``ES2015``.
 Aqui entra o [Babel](https://babeljs.io/), um compilador Javascript que nos permite utilizar uma série de recursos ``ES6``.
@@ -185,13 +185,13 @@ Podemos testar o resultado da seguinte maneira : :whale:
 
 Claro, para que tudo funcionasse foi preciso algumas configurações nos arquivos ``.babelrc`` (instruções para compilação), ``package.json`` (quais pacotes NPM instalar) e ``webpack.config.js`` (quais arquivos compilar e onde fazer o output) e não vou abordar a configuração mas vou deixar links em *leitura recomendada* que tratam disso.
 
-## SASS
+### SASS
 
 O [Sass](https://sass-lang.com/) é uma linguagem baseada em CSS que depois de compilada gera o tradicional CSS.
 
 O arquivo ``assets/scss/app.scss`` inclui todo o css do Bootstrap 4 (disponível na configugação de pacotes e instalados pelo ``yarn install``) e algum código de exemplo que é compilado no path ``public/build/app.min.css``.
 
-## Webpack
+### Webpack
 
 A mágica de ``yarn build`` acontece porque o [webpack](https://webpack.js.org/) compila e minimiza nossos arquivos javascript e sass. Mais do que isso, ele recebe a indicação de que o arquivo ``assets/scss/app.scss`` está sendo requerido por ``assets/js/app.js`` e o inclui no processo de build.
 
@@ -208,7 +208,7 @@ Isto é muito útil para testarmos novas configurações.
 
 Para visualizar uma página que carrega o javascript e o css compilado, abra http://dockerized-helloworld.localhost/bootstrap.php .
 
-## Mais leitura recomendada
+### Mais leitura recomendada
 
 * [Learn ES2015](https://babeljs.io/docs/en/learn/)
 * [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/)
@@ -239,17 +239,17 @@ Para isso, vamos aos passos de configuração:
 
 	docker-compose up -d
 
-## PhpMyAdmin (extra)
+### PhpMyAdmin (extra)
 
 Agora, no subdomínio [phpmyadmin-dockerized-helloworld.localhost](http://phpmyadmin-dockerized-helloworld.localhost) você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
 
 No arquivo [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) eu incluí o serviço que oferece o **PhpMyAdmin**, usando a imagem Docker oficial.
 
-## Redis
+### Redis
 
 O [Redis](https://aws.amazon.com/pt/elasticache/what-is-redis/) é um armazenamento de estrutura de dados de chave-valor de código aberto e na memória e usamos frequentemente em aplicações PHP para substituir o [Cache APC](https://www.php.net/manual/en/book.apc.php).
 
-## Persistência de log - RELK Stack
+### Persistência de log - RELK Stack
 
 Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma aplicação [Symfony 4](https://symfony.com/) gravará seus logs em ``var/logs/dev.log``, ``var/logs/prod.log`` ou ``var/logs/dev.log``, mas nós que estamos projetando uma aplicação que roda em containers precisamos de uma forma melhor de armazenar estes registros pois, um dos fundamentos do uso de containers é que cada container é projetado para atender um processamento por um tempo determinado e **é descartável**.
 
@@ -260,7 +260,7 @@ Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma
 3.  (**L**) Logstash;
 4.  (**K**) Kibana.
 
-## Make
+### Make
 
 [Make](https://en.wikipedia.org/wiki/Make_(software%29) é uma ferramenta para automatização de build criada em 1976 e desenhada para resolver problemas durante o processo de build, originalmente usada em projetos de [linguagem C](https://en.wikipedia.org/wiki/C_(programming_language%29) e que passou a ser amplamente utilizada em projetos [Unix Like](https://en.wikipedia.org/wiki/Unix-like).
 
