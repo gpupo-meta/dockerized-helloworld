@@ -265,10 +265,12 @@ Seu arquivo de configuração é o [Makefile](https://github.com/gpupo-meta/dock
 
 A sintaxe de um target é:
 
-	## Coment
-	target: [prerequisite]
-	    command1
-	    [command2]
+```make
+## Coment
+target: [prerequisite]
+    command1
+    [command2]
+```
 
 Devido à configuração customizada de nosso [Makefile](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Makefile), se você simplesmente executar ``make`` sem especificar qual target quer acionar, uma lista de targets e suas descrições será exibida. Experimente:
 
@@ -278,20 +280,15 @@ Devido à configuração customizada de nosso [Makefile](https://github.com/gpup
 
 Na verdade, logo no começo deste tutorial eu pedi para que você executace ``make install``. Isto fez com que fosse acionado o target **install** configurado no Makefile:
 
-```Makefile
-
+```make
 ## Composer Install
 install:
 	composer self-update
 	composer install --prefer-dist
-
 ```
-
 O target **install** segue o script de atualizar o [Composer](https://getcomposer.org/) e instalar as dependências PHP. Se o objetivo deste target fosse de instalar tudo o que o projeto precisa, o que faz sentido em um target destes em um projeto real, poderíamos acrescentar a chamada para instalação dos pacotes NPM e ainda a necessidade de realizar o build após instalação:
 
-
-```Makefile
-
+```make
 ## Instala as dependências o que o projeto precisa
 install:
 	composer self-update
@@ -299,7 +296,6 @@ install:
 	yarn install
 	yarn build
 ```
-
 
 # Considerações finais
 
