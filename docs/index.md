@@ -3,7 +3,7 @@ layout: default
 ---
 # Main Quest
 
-Este projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares para o desenvolvimento de projeto web, mas
+Este tutorial/projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares para o desenvolvimento de projeto web, mas
 **não** trata da [criação e manutenção de imagens Docker](https://opensource.gpupo.com/container-orchestration/), não é necessariamente um roteiro sem viés que busca uma instrução genérica mas sim, bem associada ao meu modo de trabalho, incluindo ferramentas de minha escolha e, apesar de útil para quem procura informações para configurar seu próprio projeto, foca em explicar a organização dos recursos e tecnologias, permitindo que novos contribuidores de projetos que já adotam esta estrutura possam entender, melhorar e executar recursos já configurados.
 
 ## Requisitos
@@ -13,6 +13,12 @@ Os exemplos abaixo são escritos para execução em um terminal linux, mas você
 Este projeto considera que você já possui o [Docker](https://docs.docker.com/release-notes/docker-ce/) e o [Docker Compose](https://docs.docker.com/compose/install/) instalado em seu sistema operacional(veja [ gpupo-meta/setup-machine](https://github.com/gpupo-meta/setup-machine)). Se você possui um computador sem suporte a virtualização talvéz não consiga rodar o Docker. Eu enfrentei este problema em um Mac Book Pro 2010.
 
 Se você pretende seguir as instruções abaixo até o fim, prepare-se para trafegar mais de 3Gb de dados, entre imagens Docker e pacotes de dependência, então, se você está dependendo de sua conexão EDGE, apenas leia o conteúdo, a leitura recomendada e deixa pra executar pra valer quando estiver melhor de conexão, ok?
+
+Vários termos usados neste tutorial possuem links que facilitarão o entendimento de quem não está familiarizado com eles, então recomendo a leitura das referências.
+
+Se tudo estiver pronto, selecione seu player e vamos em frente.
+
+![Start](https://meta.gpupo.com/dockerized-helloworld/img/start.jpg)
 
 ## Containers e Serviços
 
@@ -95,8 +101,6 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 
 	curl http://dockerized-helloworld.localhost/helloworld.php
 
-## Execução
-
 Se tudo correu bem até aqui, em
 http://dockerized-helloworld.localhost/phpinfo.php você acessa informações sobre o serviço PHP em uso.
 
@@ -124,27 +128,19 @@ Execução do "Hello World":
 
 	bin/dockerized-helloworld greeting "Arnold Schwarzenegger"
 
----
-
 ## Leitura recomendada
 
 * [Docker Quick Start](https://docs.docker.com/get-started/)
-
----
 
 ## Perguntas e respostas
 
 **Dúvidas?** Se você precisa de ajuda para entender um dos conceitos acima, [crie uma issue](https://github.com/gpupo-meta/dockerized-helloworld/issues/new),
 e marque-a com o **label** ``question``.
 
----
-
 ## Contribuição
 
 Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues).
 Veja em **Todo list** algumas sugestões de coisas a fazer.
-
----
 
 # Side Quest: Javascript & CSS
 
@@ -213,19 +209,18 @@ Isto é muito útil para testarmos novas configurações.
 
 Para visualizar uma página que carrega o javascript e o css compilado, abra http://dockerized-helloworld.localhost/bootstrap.php .
 
+## Mais leitura recomendada
 
-## Leitura recomendada
-
-* [Learn ES2015](https://babeljs.io/docs/en/learn/){:target="_blank"}
-* [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/){:target="_blank"}
-* Google [ES2015](https://developers.google.com/web/shows/ttt/series-2/es2015){:target="_blank"}
-* [O Guia do ES6: TUDO que você precisa saber](https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc%C3%AA-precisa-saber-8c287876325f){:target="_blank"}
-* [Using Webpack 4 — A “really” quick start](https://medium.com/justfrontendthings/using-webpack-4-a-really-quick-start-under-4-minutes-61ff3fa9a2c8){:target="_blank"}
-* [How to include Bootstrap in your project with Webpack](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html){:target="_blank"}
-* [Webpack 4: Extract CSS from Javascript files with mini-css-extract-plugin](https://quantizd.com/webpack-4-extract-css-with-mini-css-extract-plugin/){:target="_blank"}
-* [CSS menos sofrido com Sass](https://blog.caelum.com.br/css-menos-sofrido-com-sass/){:target="_blank"}
-* [Sass Basics](https://sass-lang.com/guide){:target="_blank"}
-* [Webpack manual](https://webpack.js.org/concepts){:target="_blank"}
+* [Learn ES2015](https://babeljs.io/docs/en/learn/){:target='\_blank'}
+* [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/){:target}
+* Google [ES2015](https://developers.google.com/web/shows/ttt/series-2/es2015){:target}
+* [O Guia do ES6: TUDO que você precisa saber](https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc%C3%AA-precisa-saber-8c287876325f){:target}
+* [Using Webpack 4 — A “really” quick start](https://medium.com/justfrontendthings/using-webpack-4-a-really-quick-start-under-4-minutes-61ff3fa9a2c8){:target}
+* [How to include Bootstrap in your project with Webpack](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html){:target}
+* [Webpack 4: Extract CSS from Javascript files with mini-css-extract-plugin](https://quantizd.com/webpack-4-extract-css-with-mini-css-extract-plugin/){:target}
+* [CSS menos sofrido com Sass](https://blog.caelum.com.br/css-menos-sofrido-com-sass/){:target}
+* [Sass Basics](https://sass-lang.com/guide){:target}
+* [Webpack manual](https://webpack.js.org/concepts){:target}
 
 #Side Quest - Extra services
 
@@ -247,17 +242,17 @@ Passo 3, levante os Serviços:
 
 ## PhpMyAdmin (extra)
 
-No subdomínio [phpmyadmin-dockerized-helloworld.localhost](http://phpmyadmin-dockerized-helloworld.localhost) você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
+Agora, no subdomínio [phpmyadmin-dockerized-helloworld.localhost](http://phpmyadmin-dockerized-helloworld.localhost) você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
 
-No arquivo [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) eu incluí o serviço que oferece o PhpMyAdmin, usando a imagem Docker oficial.
+No arquivo [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) eu incluí o serviço que oferece o **PhpMyAdmin**, usando a imagem Docker oficial.
 
 ## Redis
 
-...[incomplete doc]
+O [Redis](https://aws.amazon.com/pt/elasticache/what-is-redis/) é um armazenamento de estrutura de dados de chave-valor de código aberto e na memória e usamos frequentemente em aplicações PHP para substituir o [Cache APC](https://www.php.net/manual/en/book.apc.php).
 
-## RELK Stack- Gravação de logs
+## Persistência de log - RELK Stack
 
-Tradicionalmente, uma aplicação
+Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma aplicação [Symfony 4](https://symfony.com/) gravará seus logs em ``var/logs/dev.log``, ``var/logs/prod.log`` ou ``var/logs/dev.log``, mas nós que estamos projetando uma aplicação que roda em containers precisamos de uma forma melhor de armazenar estes registros pois, um dos fundamentos do uso de containers é que cada container é projetado para atender um processamento por um tempo determinado e **é descartável**.
 
 ![RELK flow image](https://meta.gpupo.com/dockerized-helloworld/img/relk.jpg)
 
@@ -271,6 +266,10 @@ Tradicionalmente, uma aplicação
 #Side Quest - Make
 
 ...[incomplete doc]
+
+![Congratulations](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
+
+Muito bem, você zerou o jogo :)
 
 # Todo list
 
