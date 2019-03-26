@@ -149,14 +149,12 @@ Você pode contribuir com este projeto criando uma [Pull Request](https://help.g
 
 ---
 
-# Side Quests
+# Side Quest: Javascript & CSS
 
 A partir deste ponto, a exploração de uma stack tradicional como a LAMP já ficou para trás.
 A seguir temos incrementos que lidam com a forma de trabalho usando a imagem [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gpupo/container-orchestration/tags) e outras ferramentas [opensource.gpupo.com](https://opensource.gpupo.com).
 
-## NPM, Yarn, Babel e Webpack
-
-### Yarn
+## Yarn/NPM/NodeJS
 
 Para a gestão de dependências CSS/Javascript utilizamos o YARN que já está devidamente instalado e configurado na imagem gpupo/container-orchestration:symfony-dev utilizada no service PHP-FPM do Stack de desenvolvimento.
 
@@ -170,7 +168,7 @@ Existindo a necessidade de acrescentar um pacote ao projeto, consultamos https:/
 
 O exemplo acima adiciona um pacote que é carregado apenas no ambiente de desenvolvimento já que utilizamos o parâmetro ``--dev``.
 
-### Compilando
+### Compilando (build)
 
 A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/helloworld.min.js``
 
@@ -180,7 +178,7 @@ Podemos testar o resultado da seguinte maneira:
 
 	nodejs public/build/helloworld.min.js
 
-### Babel
+## Babel/ES2015
 
 Uma escrita moderna de código javascript utiliza ``ES6`` também conhecido como ``ECMAScript 6`` ou ``ES2015``.
 Aqui entra o [Babel](https://babeljs.io/), um compilador Javascript que nos permite utilizar uma série de recursos ``ES6``.
@@ -193,15 +191,15 @@ Podemos testar o resultado da seguinte maneira:
 
 	nodejs public/build/helloworld-ES2015.min.js
 
-Claro, para que tudo funcionasse foi preciso algumas configurações nos arquivos ``.babelrc`` (instruções para compilação), ``package.json`` (quais pacotes NPM instalar) e ``webpack.config.js`` (quais arquivos compilar e onde fazer o output).
+Claro, para que tudo funcionasse foi preciso algumas configurações nos arquivos ``.babelrc`` (instruções para compilação), ``package.json`` (quais pacotes NPM instalar) e ``webpack.config.js`` (quais arquivos compilar e onde fazer o output) e não vou abordar a configuração mas vou deixar links em *leitura recomendada* que tratam disso.
 
-### SASS
+## SASS
 
 O [Sass](https://sass-lang.com/) é uma linguagem baseada em CSS que depois de compilada gera o tradicional CSS.
 
 O arquivo ``assets/scss/app.scss`` inclui todo o css do Bootstrap 4 (disponível na configugação de pacotes e instalados pelo ``yarn install``) e algum código de exemplo que é compilado no path ``public/build/app.min.css``.
 
-### Webpack
+## Webpack
 
 A mágica de ``yarn build`` acontece porque o [webpack](https://webpack.js.org/) compila e minimiza nossos arquivos javascript e sass. Mais do que isso, ele recebe a indicação de que o arquivo ``assets/scss/app.scss`` está sendo requerido por ``assets/js/app.js`` e o inclui no processo de build.
 
@@ -219,7 +217,7 @@ Isto é muito útil para testarmos novas configurações.
 Para visualizar uma página que carrega o javascript e o css compilado, abra http://dockerized-helloworld.localhost/bootstrap.php .
 
 
-### Leitura recomendada
+## Leitura recomendada
 
 * [Learn ES2015](https://babeljs.io/docs/en/learn/)
 * [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/)
@@ -232,19 +230,19 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 * [Sass Basics](https://sass-lang.com/guide)
 * [Webpack manual](https://webpack.js.org/concepts)
 
+#Side Quest - Extra services
+
 ## RELK
 
 RabbitMq / ElasticSerach  Logstash / Kibana  (RELK)
 
-
-...
+...[incomplete doc]
 
 ## Redis
 
-...
-
+...[incomplete doc]
 ___
 
 # Todo list
 
-...
+* Traduzir este documento em outros idiomas
