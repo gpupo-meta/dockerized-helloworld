@@ -96,17 +96,11 @@ selfupdate:
 
 ## Build and publish a github gh-pages branch
 gh-page:
-	mkdir -p var/cache;
-	echo "---" > var/cache/index.md;
-	echo "layout: default" >> var/cache/index.md;
-	echo "---" >> var/cache/index.md;
-	cat README.md  >> var/cache/index.md;
-	#git checkout gh-pages || (git checkout --orphan gh-pages && git ls-files -z | xargs -0 git rm --cached);
 	mkdir -p docs/_layouts;
-	cp -f vendor/gpupo/common/Resources/gh-pages-template/default.html docs/_layouts/
-	cp -f vendor/gpupo/common/Resources/gh-pages-template/_config.yml docs/.;
-	cp -f var/cache/index.md  docs/;
-	#git add -f index.md _config.yml _layouts/default.html;
-	#git commit -m "Website recreated by gpupo/common";
-	#git push -f origin gh-pages:gh-pages;
-	#git checkout -f master;
+	echo "---" > docs/index.md;
+	echo "layout: default" >> docs/index.md;
+	echo "---" >> docs/index.md;
+	cat README.md  >> docs/index.md;
+	# mkdir -p docs/_layouts;
+	# cp -f vendor/gpupo/common/Resources/gh-pages-template/default.html docs/_layouts/
+	# cp -f vendor/gpupo/common/Resources/gh-pages-template/_config.yml docs/.;

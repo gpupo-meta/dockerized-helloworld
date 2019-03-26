@@ -9,7 +9,7 @@ Os exemplos abaixo são escritos para execução em um terminal linux, mas você
 
 Este projeto considera que você já possui o [Docker](https://docs.docker.com/release-notes/docker-ce/) e o [Docker Compose](https://docs.docker.com/compose/install/) instalado em seu sistema operacional(veja [ gpupo-meta/setup-machine](https://github.com/gpupo-meta/setup-machine)). Se você possui um computador sem suporte a virtualização talvéz não consiga rodar o Docker. Eu enfrentei este problema em um Mac Book Pro 2010.
 
-Se você pretende seguir as instruções abaixo até o fim, prepare-se para trafegar mais de 3Gb de dados, entre imagens Docker e pacotes de dependência, então, se você está dependendo de sua conexão EDGE, apenas leia o conteúdo, a leitura recomendada e deixa pra executar pra valer quando estiver melhor de conexão, ok? 
+Se você pretende seguir as instruções abaixo até o fim, prepare-se para trafegar mais de 3Gb de dados, entre imagens Docker e pacotes de dependência, então, se você está dependendo de sua conexão EDGE, apenas leia o conteúdo, a leitura recomendada e deixa pra executar pra valer quando estiver melhor de conexão, ok?
 
 ## Containers e Serviços
 
@@ -213,41 +213,55 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 
 ## Leitura recomendada
 
-* [Learn ES2015](https://babeljs.io/docs/en/learn/)
-* [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/)
-* Google [ES2015](https://developers.google.com/web/shows/ttt/series-2/es2015)
-* [O Guia do ES6: TUDO que você precisa saber](https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc%C3%AA-precisa-saber-8c287876325f)
-* [Using Webpack 4 — A “really” quick start](https://medium.com/justfrontendthings/using-webpack-4-a-really-quick-start-under-4-minutes-61ff3fa9a2c8)
-* [How to include Bootstrap in your project with Webpack](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html)
-* [Webpack 4: Extract CSS from Javascript files with mini-css-extract-plugin](https://quantizd.com/webpack-4-extract-css-with-mini-css-extract-plugin/)
-* [CSS menos sofrido com Sass](https://blog.caelum.com.br/css-menos-sofrido-com-sass/)
-* [Sass Basics](https://sass-lang.com/guide)
-* [Webpack manual](https://webpack.js.org/concepts)
+* [Learn ES2015](https://babeljs.io/docs/en/learn/){:target="_blank"}
+* [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/){:target="_blank"}
+* Google [ES2015](https://developers.google.com/web/shows/ttt/series-2/es2015){:target="_blank"}
+* [O Guia do ES6: TUDO que você precisa saber](https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc%C3%AA-precisa-saber-8c287876325f){:target="_blank"}
+* [Using Webpack 4 — A “really” quick start](https://medium.com/justfrontendthings/using-webpack-4-a-really-quick-start-under-4-minutes-61ff3fa9a2c8){:target="_blank"}
+* [How to include Bootstrap in your project with Webpack](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html){:target="_blank"}
+* [Webpack 4: Extract CSS from Javascript files with mini-css-extract-plugin](https://quantizd.com/webpack-4-extract-css-with-mini-css-extract-plugin/){:target="_blank"}
+* [CSS menos sofrido com Sass](https://blog.caelum.com.br/css-menos-sofrido-com-sass/){:target="_blank"}
+* [Sass Basics](https://sass-lang.com/guide){:target="_blank"}
+* [Webpack manual](https://webpack.js.org/concepts){:target="_blank"}
 
 #Side Quest - Extra services
 
-A partir deste momento vamos incluir novos services
+A partir deste momento vamos incluir novos ``services`` em nosso projeto e para isso vamos deixar de usar o ``docker-compose file`` atual e passaremos a usar o arquivo ``Resources/docker-compose.extra-services.yaml``.
+
+Para isso, vamos aos passos de configuração:
+
+Passo 1, derrube os serviços atuais:
+
+	docker-compose down
+
+Passo 2, substitua o [link simbólico](https://www.shellhacks.com/symlink-create-symbolic-link-linux/)  de ``docker-compose.yaml`` (que atualmente aponta para ``Resources/docker-compose.dev.yaml``) para ``Resources/docker-compose.extra-services.yaml``:
+
+ 	ln -snf Resources/docker-compose.extra-services.yaml ./docker-compose.yaml
+
+Passo 3, levante os Serviços:
+
+	docker-compose up -d
 
 ## PhpMyAdmin (extra)
 
-Em http://phpmyadmin-dockerized-helloworld.localhost você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
+No subdomínio [phpmyadmin-dockerized-helloworld.localhost](http://phpmyadmin-dockerized-helloworld.localhost) você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
 
 No arquivo [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) eu incluí o serviço que oferece o PhpMyAdmin, usando a imagem Docker oficial.
+
+## Redis
+
+...[incomplete doc]
 
 ## RELK Stack- Gravação de logs
 
 Tradicionalmente, uma aplicação
 
+![RELK flow image](https://meta.gpupo.com/dockerized-helloworld/img/relk.jpg)
 
-
-Then using Docker, we’ll configure environment containing RabbitMQ, Logstash, Elasticsearch and Kibana – each running on separated Docker container.
-
-
-RabbitMq / ElasticSerach  Logstash / Kibana  (RELK)
-
-...[incomplete doc]
-
-## Redis
+1.  (**R**) RabbitMQ;
+2.  (**E**) Elasticsearch;
+3.  (**L**) Logstash;
+4.  (**K**) Kibana.
 
 ...[incomplete doc]
 
