@@ -208,16 +208,16 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 
 ## Mais leitura recomendada
 
-* [Learn ES2015](https://babeljs.io/docs/en/learn/){:target='\_blank'}
-* [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/){:target}
-* Google [ES2015](https://developers.google.com/web/shows/ttt/series-2/es2015){:target}
-* [O Guia do ES6: TUDO que você precisa saber](https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc%C3%AA-precisa-saber-8c287876325f){:target}
-* [Using Webpack 4 — A “really” quick start](https://medium.com/justfrontendthings/using-webpack-4-a-really-quick-start-under-4-minutes-61ff3fa9a2c8){:target}
-* [How to include Bootstrap in your project with Webpack](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html){:target}
-* [Webpack 4: Extract CSS from Javascript files with mini-css-extract-plugin](https://quantizd.com/webpack-4-extract-css-with-mini-css-extract-plugin/){:target}
-* [CSS menos sofrido com Sass](https://blog.caelum.com.br/css-menos-sofrido-com-sass/){:target}
-* [Sass Basics](https://sass-lang.com/guide){:target}
-* [Webpack manual](https://webpack.js.org/concepts){:target}
+* [Learn ES2015](https://babeljs.io/docs/en/learn/)
+* [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/)
+* Google [ES2015](https://developers.google.com/web/shows/ttt/series-2/es2015)
+* [O Guia do ES6: TUDO que você precisa saber](https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc%C3%AA-precisa-saber-8c287876325f)
+* [Using Webpack 4 — A “really” quick start](https://medium.com/justfrontendthings/using-webpack-4-a-really-quick-start-under-4-minutes-61ff3fa9a2c8)
+* [How to include Bootstrap in your project with Webpack](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html)
+* [Webpack 4: Extract CSS from Javascript files with mini-css-extract-plugin](https://quantizd.com/webpack-4-extract-css-with-mini-css-extract-plugin/)
+* [CSS menos sofrido com Sass](https://blog.caelum.com.br/css-menos-sofrido-com-sass/)
+* [Sass Basics](https://sass-lang.com/guide)
+* [Webpack manual](https://webpack.js.org/concepts)
 
 #Side Quest - Extra services
 
@@ -225,15 +225,15 @@ A partir deste momento vamos incluir novos ``services`` em nosso projeto e para 
 
 Para isso, vamos aos passos de configuração:
 
-Passo 1, derrube os serviços atuais:
+**Passo 1**, derrube os serviços atuais:
 
 	docker-compose down
 
-Passo 2, substitua o [link simbólico](https://www.shellhacks.com/symlink-create-symbolic-link-linux/)  de ``docker-compose.yaml`` (que atualmente aponta para ``Resources/docker-compose.dev.yaml``) para ``Resources/docker-compose.extra-services.yaml``:
+**Passo 2**, substitua o [link simbólico](https://www.shellhacks.com/symlink-create-symbolic-link-linux/)  de ``docker-compose.yaml`` (que atualmente aponta para ``Resources/docker-compose.dev.yaml``) para ``Resources/docker-compose.extra-services.yaml``:
 
  	ln -snf Resources/docker-compose.extra-services.yaml ./docker-compose.yaml
 
-Passo 3, levante os Serviços:
+**Passo 3**, levante os Serviços:
 
 	docker-compose up -d
 
@@ -258,16 +258,30 @@ Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma
 3.  (**L**) Logstash;
 4.  (**K**) Kibana.
 
-...[incomplete doc]
+# Side Quest - Make
 
-#Side Quest - Make
+[Make](https://en.wikipedia.org/wiki/Make_(software%29) é uma ferramenta para automatização de build criada em 1976 e desenhada para resolver problemas durante o processo de build, originalmente usada em projetos de [linguagem C](https://en.wikipedia.org/wiki/C_(programming_language%29) e que passou a ser amplamente utilizada em projetos [Unix Like](https://en.wikipedia.org/wiki/Unix-like).
 
-...[incomplete doc]
+Seu arquivo de configuração é o [Makefile](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Makefile) que está na raiz deste projeto. É nesse arquivo que configuramos ``targets``. Cada target é uma sequencia de instruções, que pode por sua vez depender de outros targets.
+
+A sintaxe de um target é:
+
+	target: [prerequisite]
+	    command1
+	    [command2]
+
+Devido à configuração customizada de nosso [Makefile](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Makefile), se você simplesmente executar ``make`` sem especificar qual target quer acionar, uma lista de targets e suas descrições será exibida. Experimente:
+
+	make
+
+![Make output](https://meta.gpupo.com/dockerized-helloworld/img/make.png)
+
+# Considerações finais
 
 ![Congratulations](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
 
 Muito bem, você zerou o jogo :)
 
-# Todo list
+## Todo list
 
 Veja a [lista de melhorias](https://github.com/gpupo-meta/dockerized-helloworld/labels/enhancement) em aberto.
