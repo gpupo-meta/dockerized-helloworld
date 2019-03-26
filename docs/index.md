@@ -141,7 +141,7 @@ e marque-a com o **label** ``question``.
 
 ![Game over image](https://meta.gpupo.com/dockerized-helloworld/img/gameover.png)
 
-# Side Quest: Javascript & CSS/ Webpack, SASS, ES2015
+# Javascript & CSS/ Webpack, SASS, ES2015
 
 A partir deste ponto, a exploração de uma stack tradicional como a LAMP já ficou para trás.
 A seguir temos incrementos que lidam com a forma de trabalho usando a imagem [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gpupo/container-orchestration/tags) e outras ferramentas [opensource.gpupo.com](https://opensource.gpupo.com).
@@ -221,7 +221,7 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 * [Sass Basics](https://sass-lang.com/guide)
 * [Webpack manual](https://webpack.js.org/concepts)
 
-# Side Quest - Extra services && Tools
+# Extra services && Tools
 
 A partir deste momento vamos incluir novos ``services`` em nosso projeto e para isso vamos deixar de usar o ``docker-compose file`` atual e passaremos a usar o arquivo ``Resources/docker-compose.extra-services.yaml``.
 
@@ -333,32 +333,21 @@ No arquivo [.php_cs.dist](https://github.com/gpupo-meta/dockerized-helloworld/bl
 
 Agora vamos a um exemplo prático!
 Apesar de funcionar, o arquivo [src/Traits/VeryWrongCodeStyleTrait.php](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/src/Traits/VeryWrongCodeStyleTrait.php) está mal escrito e ignora vários padrões de escrita. Mas que padrões são estes?
-Rode o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) :whale: :
+Rode o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer): :whale:
 
 	make php-cs-fixer
 
 Se você executar um ``git diff`` verá algo assim:
 
 ```diff
-diff --git a/src/Traits/VeryWrongCodeStyleTrait.php b/src/Traits/VeryWrongCodeStyleTrait.php
-index 94a3ec8..3a65c42 100644
---- a/src/Traits/VeryWrongCodeStyleTrait.php
-+++ b/src/Traits/VeryWrongCodeStyleTrait.php
-@@ -1,19 +1,30 @@
- <?php
+<?php
 
 +declare(strict_types=1);
 +
 +/*
 + * This file is part of gpupo/dockerized-helloworld
 + * Created by Gilmar Pupo <contact@gpupo.com>
-+ * For the information of copyright and license you should read the file
-+ * LICENSE which is distributed with this source code.
-+ * Para a informação dos direitos autorais e de licença você deve ler o arquivo
-+ * LICENSE que é distribuído com este código-fonte.
-+ * Para obtener la información de los derechos de autor y la licencia debe leer
-+ * el archivo LICENSE que se distribuye con el código fuente.
-+ * For more information, see <https://opensource.gpupo.com/>.
++ * For the information of copyright and license....
 + *
 + */
 +
@@ -384,7 +373,6 @@ index 94a3ec8..3a65c42 100644
      /**
       * @var string
       * @ODM\Field(type="string")
-@@ -25,9 +36,10 @@ trait VeryWrongCodeStyleTrait {
      private $name;
 
      /**
@@ -396,26 +384,17 @@ index 94a3ec8..3a65c42 100644
 -     * @param  string $name
       * @return mixed
       */
-     public function setName($name)
-@@ -38,7 +50,7 @@ trait VeryWrongCodeStyleTrait {
-     }
-
-     /**
--     * Get name
-+     * Get name.
-      *
-      * @return string
-      */
-@@ -46,5 +58,4 @@ trait VeryWrongCodeStyleTrait {
-     {
-         return $this->name;
-     }
--
- }
 
 ```
+Nesse diff que o arquivo recebeu modificações:
 
-
+* Adicionou a declaração ``declare(strict_types=1);``
+* Adicionou o HEADER padrão a todos os arquivos PHP do projeto
+* Organizou em ordem alfabética as declarações de uso,
+* Escreveu com um ``use`` por linha, como pede o CS configurado
+* Removeu o ``use PDO`` pois a classe PDO não recebe nenhum uso nas linhas do arquivo
+* Trocou as ``{`` de lugar, de acordo com o codding style definido
+* Adicionou ponto final a linhas de documentação
 
 
 # Considerações finais
