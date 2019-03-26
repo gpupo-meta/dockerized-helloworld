@@ -53,7 +53,7 @@ Então possuímos dois conjuntos de serviços: Um para desenvolvimento e outro r
 
 ## Docker Compose File
 
-Esses conjuntos são definidos no arquivo ``docker-compose.yaml``, então em um projeto temos duas versões destas configurações ``Resources/docker-compose.dev.yaml`` e ``Resources/docker-compose.prod.yaml`` e o desenvolvedor faz um link simbólico para a raiz do projeto :computer::
+Esses conjuntos são definidos no arquivo ``docker-compose.yaml``, então em um projeto temos duas versões destas configurações ``Resources/docker-compose.dev.yaml`` e ``Resources/docker-compose.prod.yaml`` e o desenvolvedor faz um link simbólico para a raiz do projeto : :computer:
 
 	ln -sn Resources/docker-compose.dev.yaml ./docker-compose.yaml
 
@@ -87,7 +87,7 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 
 ## Rodando a aplicação
 
-**Passo 1**, levantar o [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/):computer::
+**Passo 1**, levantar o [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/): :computer:
 
 	git clone https://github.com/gpupo/httpd-gateway.git;
 	pushd httpd-gateway;
@@ -95,13 +95,13 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 	make alone;
 	popd;
 
-**Passo 2**, clonar e levantar este projeto:computer::
+**Passo 2**, clonar e levantar este projeto: :computer:
 
 	git clone git@github.com:gpupo-meta/dockerized-helloworld.git;
 	cd dockerized-helloworld;
 	docker-compose up -d;
 
-**Passo 3**, testar o acesso a http://dockerized-helloworld.localhost/helloworld.php ou se preferir, via linha de comando:computer::
+**Passo 3**, testar o acesso a http://dockerized-helloworld.localhost/helloworld.php ou se preferir, via linha de comando: :computer:
 
 	curl http://dockerized-helloworld.localhost/helloworld.php
 
@@ -122,11 +122,11 @@ Apesar de você ter instalado em seu sistema operacional, todo um conjunto de in
 
 	make install
 
-Você pode agora chamar o APP CLI deste projeto :whale::
+Você pode agora chamar o APP CLI deste projeto : :whale:
 
 	bin/dockerized-helloworld
 
-Execução do "Hello World" :whale::
+Execução do "Hello World" : :whale:
 
 	bin/dockerized-helloworld greeting "Arnold Schwarzenegger"
 
@@ -162,11 +162,11 @@ O exemplo acima adiciona um pacote que é carregado apenas no ambiente de desenv
 
 ### Compilando (build)
 
-A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/helloworld.min.js`` :whale::
+A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/helloworld.min.js`` : :whale:
 
 	yarn build
 
-Podemos testar o resultado da seguinte maneira :whale::
+Podemos testar o resultado da seguinte maneira : :whale:
 
 	nodejs public/build/helloworld.min.js
 
@@ -179,7 +179,7 @@ Em nosso projetto ``dockerized-helloworld`` todas as ferramentas necessárias pa
 
 O javascript ``assets/js/helloworld-ES2015.js`` foi compilado pelo ``yarn build`` em ``public/build/helloworld-ES2015.min.js``
 
-Podemos testar o resultado da seguinte maneira :whale::
+Podemos testar o resultado da seguinte maneira : :whale:
 
 	nodejs public/build/helloworld-ES2015.min.js
 
@@ -199,7 +199,7 @@ A mágica de ``yarn build`` acontece porque o [webpack](https://webpack.js.org/)
 
 Sua configuração é feita a partir do arquivo ``webpack.config.js``.
 
-Você pode acionar o webpack diretamente da seguinte maneira :whale::
+Você pode acionar o webpack diretamente da seguinte maneira : :whale:
 
 	export PATH="$(yarn bin):$PATH";
 	webpack --config webpack.config.js;
@@ -221,21 +221,21 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 * [Sass Basics](https://sass-lang.com/guide)
 * [Webpack manual](https://webpack.js.org/concepts)
 
-# Side Quest - Extra services
+# Side Quest - Extra services && Tools
 
 A partir deste momento vamos incluir novos ``services`` em nosso projeto e para isso vamos deixar de usar o ``docker-compose file`` atual e passaremos a usar o arquivo ``Resources/docker-compose.extra-services.yaml``.
 
 Para isso, vamos aos passos de configuração:
 
-**Passo 1**, derrube os serviços atuais :computer::
+**Passo 1**, derrube os serviços atuais : :computer:
 
 	docker-compose down
 
-**Passo 2**, substitua o [link simbólico](https://www.shellhacks.com/symlink-create-symbolic-link-linux/)  de ``docker-compose.yaml`` (que atualmente aponta para ``Resources/docker-compose.dev.yaml``) para ``Resources/docker-compose.extra-services.yaml`` :computer::
+**Passo 2**, substitua o [link simbólico](https://www.shellhacks.com/symlink-create-symbolic-link-linux/)  de ``docker-compose.yaml`` (que atualmente aponta para ``Resources/docker-compose.dev.yaml``) para ``Resources/docker-compose.extra-services.yaml`` : :computer:
 
  	ln -snf Resources/docker-compose.extra-services.yaml ./docker-compose.yaml
 
-**Passo 3**, levante os Serviços :computer::
+**Passo 3**, levante os Serviços : :computer:
 
 	docker-compose up -d
 
@@ -260,8 +260,6 @@ Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma
 3.  (**L**) Logstash;
 4.  (**K**) Kibana.
 
-# Side Quest - Make/QA Tools
-
 ## Make
 
 [Make](https://en.wikipedia.org/wiki/Make_(software%29) é uma ferramenta para automatização de build criada em 1976 e desenhada para resolver problemas durante o processo de build, originalmente usada em projetos de [linguagem C](https://en.wikipedia.org/wiki/C_(programming_language%29) e que passou a ser amplamente utilizada em projetos [Unix Like](https://en.wikipedia.org/wiki/Unix-like).
@@ -277,7 +275,7 @@ target: [prerequisite]
     [command2]
 ```
 
-Devido à configuração customizada de nosso [Makefile](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Makefile), se você simplesmente executar ``make`` sem especificar qual target quer acionar, uma lista de targets e suas descrições será exibida. Experimente :whale::
+Devido à configuração customizada de nosso [Makefile](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Makefile), se você simplesmente executar ``make`` sem especificar qual target quer acionar, uma lista de targets e suas descrições será exibida. Experimente : :whale:
 
 	make
 
