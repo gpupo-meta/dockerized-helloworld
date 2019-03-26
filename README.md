@@ -116,7 +116,6 @@ Apesar de você ter instalado em seu sistema operacional, todo um conjunto de in
 
 	make install
 
-
 Você pode agora chamar o APP CLI deste projeto:
 
 	bin/dockerized-helloworld
@@ -266,6 +265,7 @@ Seu arquivo de configuração é o [Makefile](https://github.com/gpupo-meta/dock
 
 A sintaxe de um target é:
 
+	## Coment
 	target: [prerequisite]
 	    command1
 	    [command2]
@@ -275,6 +275,31 @@ Devido à configuração customizada de nosso [Makefile](https://github.com/gpup
 	make
 
 ![Make output](https://meta.gpupo.com/dockerized-helloworld/img/make.png)
+
+Na verdade, logo no começo deste tutorial eu pedi para que você executace ``make install``. Isto fez com que fosse acionado o target **install** configurado no Makefile:
+
+```Makefile
+
+## Composer Install
+install:
+	composer self-update
+	composer install --prefer-dist
+
+```
+
+O target **install** segue o script de atualizar o [Composer](https://getcomposer.org/) e instalar as dependências PHP. Se o objetivo deste target fosse de instalar tudo o que o projeto precisa, o que faz sentido em um target destes em um projeto real, poderíamos acrescentar a chamada para instalação dos pacotes NPM e ainda a necessidade de realizar o build após instalação:
+
+
+```Makefile
+
+## Instala as dependências o que o projeto precisa
+install:
+	composer self-update
+	composer install --prefer-dist
+	yarn install
+	yarn build
+```
+
 
 # Considerações finais
 
