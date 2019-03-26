@@ -169,13 +169,13 @@ O exemplo acima adiciona um pacote que é carregado apenas no ambiente de desenv
 
 ### Compilando
 
-A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/js/helloworld.js``
+A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/helloworld.min.js``
 
 	yarn build
 
 Podemos testar o resultado da seguinte maneira:
 
-	nodejs public/build/js/helloworld.js
+	nodejs public/build/helloworld.min.js
 
 ### Babel
 
@@ -184,21 +184,36 @@ Aqui entra o [Babel](https://babeljs.io/), um compilador Javascript que nos perm
 Não vou detalhar o uso do ``ES6`` aqui nesse documento mas logo abaixo seguem links para o aprendizado da sintaxe.
 Em nosso projetto ``dockerized-helloworld`` todas as ferramentas necessárias para compilar javascript ``ES6`` forma instaladas quando você executou ``yarn install``.
 
-O javascript ``assets/js/helloworld-ES2015.js`` foi compilado pelo ``yarn build`` em ``public/build/js/helloworld-ES2015.js``
+O javascript ``assets/js/helloworld-ES2015.js`` foi compilado pelo ``yarn build`` em ``public/build/helloworld-ES2015.min.js``
 
 Podemos testar o resultado da seguinte maneira:
 
-	nodejs public/build/js/helloworld-ES2015.js
+	nodejs public/build/helloworld-ES2015.min.js
 
 Claro, para que tudo funcionasse foi preciso algumas configurações nos arquivos ``.babelrc`` (instruções para compilação), ``package.json`` (quais pacotes NPM instalar) e ``webpack.config.js`` (quais arquivos compilar e onde fazer o output).
 
-### SASS (Bootstrap test)
+### SASS
 
+O [Sass](https://sass-lang.com/) é uma linguagem baseada em CSS que depois de compilada gera o tradicional CSS.
 
-	http://dockerized-helloworld.localhost/bootstrap.php
-
+O arquivo ``assets/scss/app.scss`` inclui todo o css do Bootstrap 4 (disponível na configugação de pacotes e instalados pelo ``yarn install``) e algum código de exemplo que é compilado no path ``public/build/app.min.css``.
 
 ### Webpack
+
+A mágica de ``yarn build`` acontece porque o [webpack](https://webpack.js.org/) compila e minimiza nossos arquivos javascript e sass. Mais do que isso, ele recebe a indicação de que o arquivo ``assets/scss/app.scss`` está sendo requerido por ``assets/js/app.js`` e o inclui no processo de build.
+
+![Webpack flow image](https://webpack.github.io/assets/what-is-webpack.png)
+
+Sua configuração é feita a partir do arquivo ``webpack.config.js``.
+
+Você pode acionar o webpack diretamente da seguinte maneira:
+
+	export PATH="$(yarn bin):$PATH";
+	webpack --config webpack.config.js;
+
+Isto é muito útil para testarmos novas configurações.
+
+Para visualizar uma página que carrega o javascript e o css compilado, abra http://dockerized-helloworld.localhost/bootstrap.php .
 
 
 ### Leitura recomendada
@@ -209,8 +224,10 @@ Claro, para que tudo funcionasse foi preciso algumas configurações nos arquivo
 * [O Guia do ES6: TUDO que você precisa saber](https://medium.com/@matheusml/o-guia-do-es6-tudo-que-voc%C3%AA-precisa-saber-8c287876325f)
 * [Using Webpack 4 — A “really” quick start](https://medium.com/justfrontendthings/using-webpack-4-a-really-quick-start-under-4-minutes-61ff3fa9a2c8)
 * [How to include Bootstrap in your project with Webpack](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html)
-
-...
+* [Webpack 4: Extract CSS from Javascript files with mini-css-extract-plugin](https://quantizd.com/webpack-4-extract-css-with-mini-css-extract-plugin/)
+* [CSS menos sofrido com Sass](https://blog.caelum.com.br/css-menos-sofrido-com-sass/)
+* [Sass Basics](https://sass-lang.com/guide)
+* [Webpack manual](https://webpack.js.org/concepts)
 
 ## RELK
 

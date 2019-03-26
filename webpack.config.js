@@ -5,23 +5,19 @@ const devMode = process.env.NODE_ENV !== 'production'
 module.exports = {
   context: "/var/www/app",
   entry: {
-    'js/app.js': [
+    'app': [
         path.resolve(__dirname, 'assets/js', 'app.js')
     ],
-    'js/helloworld.js': [
+    'helloworld': [
         path.resolve(__dirname, 'assets/js', 'helloworld.js')
     ],
-    'js/helloworld-ES2015.js': [
+    'helloworld-ES2015': [
         path.resolve(__dirname, 'assets/js', 'helloworld-ES2015.js')
-    ]
-    ,
-    'css/app.css': [
-        path.resolve(__dirname, 'assets/scss', 'app.scss')
     ]
   },
   output: {
-      path: "/var/www/app/public/build",
-      filename: "[name]",
+      path: path.resolve(__dirname, 'public/build'),
+      filename: "[name].min.js",
       publicPath: "/build/",
       pathinfo: false
   },
@@ -34,16 +30,11 @@ module.exports = {
          ".tsx"
        ]
   },
-
   plugins: [
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+        filename: "[name].min.css"
     })
   ],
-
   module: {
     rules: [
       {
@@ -54,21 +45,12 @@ module.exports = {
         }
       },
       {
-        test: /\.(sc|c)ss$/,
+        test: /\.s?[ac]ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "sourceMap": false,
-              "config": {
-                "path": "config/postcss.config.js"
-              }
-            }
-          },
-          'sass-loader'
-        ],
+            MiniCssExtractPlugin.loader,
+            { loader: 'css-loader', options: { url: false, sourceMap: true } },
+            { loader: 'sass-loader', options: { sourceMap: true } }
+        ]
       }
     ]
   }
