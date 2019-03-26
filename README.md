@@ -1,7 +1,7 @@
 # Main Quest
 
 Este projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares mas
-**não** trata da criação e [manutenção de imagens](https://opensource.gpupo.com/container-orchestration/).
+**não** trata da [criação e manutenção de imagens Docker](https://opensource.gpupo.com/container-orchestration/).
 
 ## Requisitos
 
@@ -87,16 +87,20 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 	cd dockerized-helloworld;
 	docker-compose up -d;
 
-**Passo 3**, testar o acesso a http://dockerized-helloworld.localhost ou se preferir, via linha de comando:
+**Passo 3**, testar o acesso a http://dockerized-helloworld.localhost/helloworld.php ou se preferir, via linha de comando:
 
-	curl http://dockerized-helloworld.localhost
+	curl http://dockerized-helloworld.localhost/helloworld.php
 
 ## Execução
 
 Se tudo correu bem até aqui, em
 http://dockerized-helloworld.localhost/phpinfo.php você acessa informações sobre o serviço PHP em uso.
 
+## PhpMyAdmin (extra)
+
 Em http://phpmyadmin-dockerized-helloworld.localhost você poderá acessar o [PhpMyAdmin](https://www.phpmyadmin.net/)
+
+No arquivo [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Resources/docker-compose.dev.yaml) eu incluí o serviço que oferece o PhpMyAdmin, usando a imagem Docker oficial.
 
 **Passo 4**, acesso ao terminal do serviço **Interpretador**:
 
@@ -188,7 +192,10 @@ Podemos testar o resultado da seguinte maneira:
 
 Claro, para que tudo funcionasse foi preciso algumas configurações nos arquivos ``.babelrc`` (instruções para compilação), ``package.json`` (quais pacotes NPM instalar) e ``webpack.config.js`` (quais arquivos compilar e onde fazer o output).
 
-### SASS
+### SASS (Bootstrap test)
+
+
+	http://dockerized-helloworld.localhost/bootstrap.php
 
 
 ### Webpack
