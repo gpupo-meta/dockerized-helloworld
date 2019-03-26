@@ -16,13 +16,17 @@ Se você pretende seguir as instruções abaixo até o fim, prepare-se para traf
 
 Vários termos usados neste tutorial possuem links que facilitarão o entendimento de quem não está familiarizado com eles, então recomendo a leitura das referências.
 
+Alguns comandos devem ser executados em seu terminal tradicional e quando for este o caso, o símbolo :computer: estará presente, porém outros comandos requerem a execução a partir do terminal virtualizado. Quando for este o caso, o símbolo :whale: estará próximo, indicando que a execução deve ser feita no bash do container. Como chegar lá ? Você vai aprender logo abaixo...
+
+Um último requisito importante é **paciência** e **dedicação** pois é bastante coisa pra ler, seguir referências, executar comandos, analizar diffs e refazer até entender. Pra te motivar e também responsabilizar, eu gastei várias horas de trabalho escrevendo este tutorial, tirando as melhores técnicas do meu vaú de tesouross, para que você aí do futuro aprendesse a usá-las, então, me dê algum crédito e esforço quando seguir com este tutorial, ou, se preferir algo mais facil, por [seguir por aqui](http://bfy.tw/Mw0J) ... 
+
 Se tudo estiver pronto, selecione seu player e vamos em frente.
 
 ![Start](https://meta.gpupo.com/dockerized-helloworld/img/start.jpg)
 
 ## Containers e Serviços
 
-**Dockerized Applications** rodam em [containers](https://www.docker.com/resources/what-container) e possuem um conjunto de serviços (**services**). Seguindo as melhores práticas, para cada responsabilidade é criado (preferencialmente) um serviço.
+:whale: **Dockerized Applications** rodam em [containers](https://www.docker.com/resources/what-container) e possuem um conjunto de serviços (**services**). Seguindo as melhores práticas, para cada responsabilidade é criado (preferencialmente) um serviço.
 
 Exemplificando, em uma solução ([stack](https://en.wikipedia.org/wiki/Solution_stack)) popular como a tradicional [LAMP](https://en.wikipedia.org/wiki/LAMP_%28software_bundle%29), temos as seguintes responsabilidades:
 
@@ -49,7 +53,7 @@ Então possuímos dois conjuntos de serviços: Um para desenvolvimento e outro r
 
 ## Docker Compose File
 
-Esses conjuntos são definidos no arquivo ``docker-compose.yaml``, então em um projeto temos duas versões destas configurações ``Resources/docker-compose.dev.yaml`` e ``Resources/docker-compose.prod.yaml`` e o desenvolvedor faz um link simbólico para a raiz do projeto:
+Esses conjuntos são definidos no arquivo ``docker-compose.yaml``, então em um projeto temos duas versões destas configurações ``Resources/docker-compose.dev.yaml`` e ``Resources/docker-compose.prod.yaml`` e o desenvolvedor faz um link simbólico para a raiz do projeto :computer::
 
 	ln -sn Resources/docker-compose.dev.yaml ./docker-compose.yaml
 
@@ -83,7 +87,7 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 
 ## Rodando a aplicação
 
-**Passo 1**, levantar o [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/):
+**Passo 1**, levantar o [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/):computer::
 
 	git clone https://github.com/gpupo/httpd-gateway.git;
 	pushd httpd-gateway;
@@ -91,13 +95,13 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 	make alone;
 	popd;
 
-**Passo 2**, clonar e levantar este projeto:
+**Passo 2**, clonar e levantar este projeto:computer::
 
 	git clone git@github.com:gpupo-meta/dockerized-helloworld.git;
 	cd dockerized-helloworld;
 	docker-compose up -d;
 
-**Passo 3**, testar o acesso a http://dockerized-helloworld.localhost/helloworld.php ou se preferir, via linha de comando:
+**Passo 3**, testar o acesso a http://dockerized-helloworld.localhost/helloworld.php ou se preferir, via linha de comando:computer::
 
 	curl http://dockerized-helloworld.localhost/helloworld.php
 
@@ -105,7 +109,7 @@ Se tudo correu bem até aqui, em
 http://dockerized-helloworld.localhost/phpinfo.php você acessa informações sobre o serviço PHP em uso.
 
 
-**Passo 4**, acesso ao terminal do serviço **Interpretador**:
+**Passo 4**, acesso ao terminal do serviço **Interpretador** :computer: :
 
 	docker-compose exec php-fpm bash
 
@@ -114,16 +118,15 @@ Você verá que ao executar o comando acima é lançado para o ambiente virtuali
 Se você listar os arquivos do diretório  ``/var/www/app`` verá que são **exatamente** os mesmos da raiz deste projeto.
 Isto se dá pelo fato que que [mapeamos o diretório](https://docs.docker.com/compose/compose-file/#volumes) nos parâmetros ``volumes`` existentes nos arquivos __docker-compose*.yaml__
 
-
-Apesar de você ter instalado em seu sistema operacional, todo um conjunto de interpretadores como por exemplo o PHP, preferenciamente os comandos de manutenção e execução relacionados ao projeto devem ser executados a partir do serviço (container), que possui a versão, configuração e ferramentas escolhidas para o projeto. Após acessar o terminal do serviço **Interpretador**, instale as dependências:
+Apesar de você ter instalado em seu sistema operacional, todo um conjunto de interpretadores como por exemplo o PHP, preferenciamente os comandos de manutenção e execução relacionados ao projeto devem ser executados a partir do serviço (container), que possui a versão, configuração e ferramentas escolhidas para o projeto. Após acessar o terminal do serviço **Interpretador**, instale as dependências :whale: :
 
 	make install
 
-Você pode agora chamar o APP CLI deste projeto:
+Você pode agora chamar o APP CLI deste projeto :whale::
 
 	bin/dockerized-helloworld
 
-Execução do "Hello World":
+Execução do "Hello World" :whale::
 
 	bin/dockerized-helloworld greeting "Arnold Schwarzenegger"
 
@@ -136,10 +139,7 @@ Execução do "Hello World":
 **Dúvidas?** Se você precisa de ajuda para entender um dos conceitos acima, [crie uma issue](https://github.com/gpupo-meta/dockerized-helloworld/issues/new),
 e marque-a com o **label** ``question``.
 
-## Contribuição
-
-Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues).
-Veja em **Todo list** algumas sugestões de coisas a fazer.
+![Game over image](https://meta.gpupo.com/dockerized-helloworld/img/gameover.png)
 
 # Side Quest: Javascript & CSS
 
@@ -150,11 +150,11 @@ A seguir temos incrementos que lidam com a forma de trabalho usando a imagem [gp
 
 Para a gestão de dependências CSS/Javascript utilizamos o YARN que já está devidamente instalado e configurado na imagem gpupo/container-orchestration:symfony-dev utilizada no service PHP-FPM do Stack de desenvolvimento.
 
-Assim como o comando ``composer install`` instala os pacotes **PHP** definidos em ``compose.json``, o comando ``yarn install`` instala os pacotes **NPM** definidos em ``package.json``.
+Assim como o comando ``composer install`` instala os pacotes **PHP** definidos em ``compose.json``, o comando ``yarn install`` instala os pacotes **NPM** definidos em ``package.json`` :whale:.
 
 	yarn install
 
-Existindo a necessidade de acrescentar um pacote ao projeto, consultamos https://www.npmjs.com/  ou https://yarnpkg.com para encontrar o identificador do pacote. Exemplo: ``babel-plugin-transform-es2015-parameters``.
+Existindo a necessidade de acrescentar um pacote ao projeto, consultamos https://www.npmjs.com/  ou https://yarnpkg.com para encontrar o identificador do pacote. Exemplo: ``babel-plugin-transform-es2015-parameters`` :whale:.
 
 	yarn add babel-plugin-transform-es2015-parameters --dev
 
@@ -162,11 +162,11 @@ O exemplo acima adiciona um pacote que é carregado apenas no ambiente de desenv
 
 ### Compilando (build)
 
-A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/helloworld.min.js``
+A partir das instruções de ``assets/js/helloworld.js`` será compilado o arquivo ``public/build/helloworld.min.js`` :whale::
 
 	yarn build
 
-Podemos testar o resultado da seguinte maneira:
+Podemos testar o resultado da seguinte maneira :whale::
 
 	nodejs public/build/helloworld.min.js
 
@@ -179,7 +179,7 @@ Em nosso projetto ``dockerized-helloworld`` todas as ferramentas necessárias pa
 
 O javascript ``assets/js/helloworld-ES2015.js`` foi compilado pelo ``yarn build`` em ``public/build/helloworld-ES2015.min.js``
 
-Podemos testar o resultado da seguinte maneira:
+Podemos testar o resultado da seguinte maneira :whale::
 
 	nodejs public/build/helloworld-ES2015.min.js
 
@@ -199,7 +199,7 @@ A mágica de ``yarn build`` acontece porque o [webpack](https://webpack.js.org/)
 
 Sua configuração é feita a partir do arquivo ``webpack.config.js``.
 
-Você pode acionar o webpack diretamente da seguinte maneira:
+Você pode acionar o webpack diretamente da seguinte maneira :whale::
 
 	export PATH="$(yarn bin):$PATH";
 	webpack --config webpack.config.js;
@@ -221,21 +221,21 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 * [Sass Basics](https://sass-lang.com/guide)
 * [Webpack manual](https://webpack.js.org/concepts)
 
-#Side Quest - Extra services
+# Side Quest - Extra services
 
 A partir deste momento vamos incluir novos ``services`` em nosso projeto e para isso vamos deixar de usar o ``docker-compose file`` atual e passaremos a usar o arquivo ``Resources/docker-compose.extra-services.yaml``.
 
 Para isso, vamos aos passos de configuração:
 
-**Passo 1**, derrube os serviços atuais:
+**Passo 1**, derrube os serviços atuais :computer::
 
 	docker-compose down
 
-**Passo 2**, substitua o [link simbólico](https://www.shellhacks.com/symlink-create-symbolic-link-linux/)  de ``docker-compose.yaml`` (que atualmente aponta para ``Resources/docker-compose.dev.yaml``) para ``Resources/docker-compose.extra-services.yaml``:
+**Passo 2**, substitua o [link simbólico](https://www.shellhacks.com/symlink-create-symbolic-link-linux/)  de ``docker-compose.yaml`` (que atualmente aponta para ``Resources/docker-compose.dev.yaml``) para ``Resources/docker-compose.extra-services.yaml`` :computer::
 
  	ln -snf Resources/docker-compose.extra-services.yaml ./docker-compose.yaml
 
-**Passo 3**, levante os Serviços:
+**Passo 3**, levante os Serviços :computer::
 
 	docker-compose up -d
 
@@ -260,7 +260,9 @@ Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma
 3.  (**L**) Logstash;
 4.  (**K**) Kibana.
 
-# Side Quest - Make
+# Side Quest - Make/QA Tools
+
+## Make
 
 [Make](https://en.wikipedia.org/wiki/Make_(software%29) é uma ferramenta para automatização de build criada em 1976 e desenhada para resolver problemas durante o processo de build, originalmente usada em projetos de [linguagem C](https://en.wikipedia.org/wiki/C_(programming_language%29) e que passou a ser amplamente utilizada em projetos [Unix Like](https://en.wikipedia.org/wiki/Unix-like).
 
@@ -275,7 +277,7 @@ target: [prerequisite]
     [command2]
 ```
 
-Devido à configuração customizada de nosso [Makefile](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Makefile), se você simplesmente executar ``make`` sem especificar qual target quer acionar, uma lista de targets e suas descrições será exibida. Experimente:
+Devido à configuração customizada de nosso [Makefile](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Makefile), se você simplesmente executar ``make`` sem especificar qual target quer acionar, uma lista de targets e suas descrições será exibida. Experimente :whale::
 
 	make
 
@@ -300,12 +302,52 @@ install:
 	yarn build
 ```
 
+Experimente o target ``bash`` que vai lhe lançar diretamente no bash do serviço ``PHP-FPM``:
+
+	make bash
+
+## QA Tools
+
+A imagem [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gpupo/container-orchestration/tags) possui ferramentas de [quality assurance](https://en.wikipedia.org/wiki/Software_quality_assurance) que nos ajudam a manter a qualidade da escrita e da engenharia.
+
+### Coding styles
+
+Uma ferramenta muito importante é o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) que vai alinhar o código escrito de acordo com as regras de padrão selecionados para o projeto.
+
+Neste projeto seguimos [PHP Standards Recommendations](https://www.php-fig.org/psr/)(PSR) e também padrões sugeridos pelo projeto [Symfony](https://symfony.com/) com objetivo facilitar a reutilização de código entre os diversos projetos que implementem determinado padrão.
+
+Se você ainda não está familiarizado com as PSRs, saiba que existem PSRs para implementações de [autoload](http://br1.php.net/manual/en/function.autoload.php)[ (](http://www.php-fig.org/psr/psr-4/)[PSR-4](http://www.php-fig.org/psr/psr-4/)), sugestões de estilos de código, como posição de chaves, indentação ([Usar tabulações ou espaços?](http://www.jwz.org/doc/tabs-vs-spaces.html)) ([PSR-1](http://www.php-fig.org/psr/psr-1/) e [PSR-2](http://www.php-fig.org/psr/psr-2/)).
+
+Existem também propostas em draft para padronização dos docblock de documentação ([PSR-5](https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md)) e uma interface para requisições HTTP ([PSR-7](https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md))
+
+Mais informações leia o[FAQ](https://www.php-fig.org/faqs/) e visite o [repositório no GitHub](https://github.com/php-fig/fig-standards) com os padrões já aceitos.
+
+#### Principais padrões de escrita adotados neste projeto
+
+*   [PSR-1: Basic Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
+*   [PSR-2: Coding Style Guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
+*   [PSR-4: Autoloading Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
+*   [PSR-5: PHPDoc (draft)](https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md)
+*   [Symfony Coding Standards](https://symfony.com/doc/current/contributing/code/standards.html)
+
+No arquivo [.php_cs.dist](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.php_cs.dist) é configurado este conjunto de regras.
+
+
+Agora vamos a um exemplo prático!
+Apesar de funcionar, o arquivo [src/Traits/VeryWrongCodeStyleTrait.php](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/src/Traits/VeryWrongCodeStyleTrait.php) está mal escrito e ignora vários padrões de escrita. Mas que padrões são estes?
+Rode o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) :whale: :
+
+	make php-cs-fixer
+
+
+
+
 # Considerações finais
 
 ![Congratulations](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
 
 Muito bem, você zerou o jogo :)
 
-## Todo list
+Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues).
 
-Veja a [lista de melhorias](https://github.com/gpupo-meta/dockerized-helloworld/labels/enhancement) em aberto.
+Veja a [lista de melhorias](https://github.com/gpupo-meta/dockerized-helloworld/labels/enhancement) que precisam de desenvolvimento.
