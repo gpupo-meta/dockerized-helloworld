@@ -90,9 +90,15 @@ phan:
 phpunit:
 	${VENDOR_BIN}/phpunit --testdox
 
-## Update make file
-selfupdate:
-	cp -f vendor/gpupo/common/Makefile Makefile
+## Turn RELK stack ON
+relk@up:
+	cd dockerized-relk && docker-compose up -d;
+	printf "${COLOR_COMMENT}RELK stack ON${COLOR_RESET}\n"
+
+## Turn RELK stack OFF
+relk@down:
+	cd dockerized-relk && docker-compose down;
+	printf "${COLOR_COMMENT}RELK stack OFF${COLOR_RESET}\n"
 
 ## Build and publish
 publish:

@@ -1,0 +1,59 @@
+version: '3.3'
+services:
+  elasticsearch:
+    image: gpupo/container-orchestration:elasticsearch
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+        - discovery.type=single-node
+    networks:
+      - backend
+  logstash:
+    image: gpupo/container-orchestration:logstash
+    volumes:
+      - $PWD/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - $PWD/logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+    links:
+      - elasticsearch
+      - rabbitmq
+    ports:
+      - 5000:5000/udp
+      - 5400:5400
+      - 5400:5400/udp
+      - 12201:12201/udp
+      - 12202:12202/udp
+      - 9600:9600
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - backend
+
+  kibana:
+    image: gpupo/container-orchestration:kibana
+    volumes:
+      - $PWD/kibana/config/:/usr/share/kibana/config:ro
+    ports:
+      - 5601:5601
+    links:
+      - elasticsearch
+    networks:
+      - backend
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 5672:5672/udp
+      - 15672:15672
+    networks:
+      - backend
+    volumes:
+      - $PWD/rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+      - $PWD/rabbitmq/rabbit.json:/etc/rabbitmq/rabbit.json
+networks:
+  backend:
+#    driver: bridge
+  nginx-proxy:
+    external:
+        name: nginx-proxy
