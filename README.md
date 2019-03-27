@@ -19,7 +19,7 @@ Um último requisito importante é **paciência** e **dedicação** pois é bast
 
 Se tudo estiver pronto, selecione seu player e vamos em frente.
 
-![Start](https://meta.gpupo.com/dockerized-helloworld/img/start.jpg)
+![Start](https://meta.gpupo.com/dockerized-helloworld/img/start.png)
 
 ## Containers e Serviços
 
@@ -263,9 +263,9 @@ Para montar esse servidor usamos basicamente 4 ``services``:
 
 Nossa aplicação, utilizando um drive específico ([php-amqplib/php-amqplib](https://github.com/php-amqplib/php-amqplib)), envia os logs para um servidor [RabbitMQ](https://www.rabbitmq.com/) que os guarda em uma fila.
 
-O [Logstash](https://www.elastic.co/products/logstash) conecta no RabbitMQ e coleta os registros de log, (transforma-os se necessário) e grava-os no [Elasticsearch](https://www.elastic.co/).
+O [Logstash](https://www.elastic.co/products/logstash) conecta no **RabbitMQ** e coleta os registros de log, (transforma-os se necessário) e grava-os no [Elasticsearch](https://www.elastic.co/).
 
-O [Kibana](https://www.elastic.co/products/kibana) é uma interface de leitura e exploração destes logs que estão gravados no Elasticsearch,
+O [Kibana](https://www.elastic.co/products/kibana) é uma interface de leitura e exploração destes logs que estão gravados no **Elasticsearch**.
 
 #### Levantando a stack
 
