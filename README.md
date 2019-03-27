@@ -246,9 +246,11 @@ No arquivo [Resources/docker-compose.dev.yaml](https://github.com/gpupo-meta/doc
 
 O [Redis](https://aws.amazon.com/pt/elasticache/what-is-redis/) é um armazenamento de estrutura de dados de chave-valor de código aberto e na memória e usamos frequentemente em aplicações PHP para substituir o [Cache APC](https://www.php.net/manual/en/book.apc.php).
 
-### Persistência de log - RELK Stack
+### Persistência de logs na stack RELK
 
-Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma aplicação [Symfony 4](https://symfony.com/) gravará seus logs em ``var/logs/dev.log``, ``var/logs/prod.log`` ou ``var/logs/dev.log``, mas nós que estamos projetando uma aplicação que roda em containers precisamos de uma forma melhor de armazenar estes registros pois, um dos fundamentos do uso de containers é que cada container é projetado para atender um processamento por um tempo determinado e **é descartável**.
+Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma aplicação [Symfony 4](https://symfony.com/) gravará seus logs em ``var/logs/dev.log``, ``var/logs/prod.log`` ou ``var/logs/dev.log``, mas nós que estamos projetando uma aplicação que roda em containers precisamos de uma forma melhor de armazenar estes registros pois, um dos fundamentos do uso de containers é que cada container é projetado para atender um processamento por um tempo determinado e **é descartável**. Não podemos perder os logs da aplicação a cada vez que recriamos um container ou mudamos a imagem na qual ele é baseado. Poderíamos resolver este problema com a técnica de mapeamento de um diretório da máquina host para ``var/logs`` mas isto continua centralizando os logs em uma máquina e em uma arquitetura de nuvem, usamos muitas máquinas, então teríamos que abrir muitos diretórios para buscar uma informação e a partir de certa quantidade de máquinas, fazer isto se torna inviável. Então, uma engenharia que resolve de maneira muito habilidosa este problema é enviar todos os logs para um [servidor de logs](https://en.wikipedia.org/wiki/Server_log). Simples assim.
+
+Para montar esse servidor usamos basicamente 4 ``services``:
 
 ![RELK flow image](https://meta.gpupo.com/dockerized-helloworld/img/relk.jpg)
 
@@ -256,6 +258,7 @@ Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma
 2.  (**E**) Elasticsearch;
 3.  (**L**) Logstash;
 4.  (**K**) Kibana.
+
 
 ### Make
 
@@ -393,6 +396,10 @@ Nesse diff que o arquivo recebeu modificações:
 * Trocou as ``{`` de lugar, de acordo com o codding style definido
 * Adicionou ponto final a linhas de documentação
 
+É uma boa prática você utilizar o ``make php-cs-fixer`` após terminar o desenvolvimento de uma feature PHP.
+
+
+---
 
 # Considerações finais
 
