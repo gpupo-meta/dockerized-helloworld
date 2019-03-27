@@ -25,6 +25,35 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 final class LogGeneratorCommand extends AbstractCommand
 {
+    protected $words = [
+        'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
+        'a', 'ac', 'accumsan', 'ad', 'aenean', 'aliquam', 'aliquet', 'ante',
+        'aptent', 'arcu', 'at', 'auctor', 'augue', 'bibendum', 'blandit',
+        'class', 'commodo', 'condimentum', 'congue', 'consequat', 'conubia',
+        'dapibus', 'diam', 'dictum', 'dictumst', 'dignissim', 'dis', 'donec',
+        'dui', 'duis', 'efficitur', 'egestas', 'eget', 'eleifend', 'elementum',
+        'facilisi', 'facilisis', 'fames', 'faucibus', 'felis', 'fermentum',
+        'habitasse', 'hac', 'hendrerit', 'himenaeos', 'iaculis', 'id',
+        'imperdiet', 'in', 'inceptos', 'integer', 'interdum', 'justo',
+        'lacinia', 'lacus', 'laoreet', 'lectus', 'leo', 'libero', 'ligula',
+        'molestie', 'mollis', 'montes', 'morbi', 'mus', 'nam', 'nascetur',
+    ];
+
+    protected function factoryMessage(int $i): AMQPMessage
+    {
+        shuffle($this->words);
+        $data = [
+            'channel' => 'CLI',
+            'level_name' => 'INFO',
+            'level' => 200,
+            'message' => vsprintf('%s Estou %s testando %s o envio %s de logs a partir %s de App PHP %s ', $this->words),
+            'extra' => ['i' => $i],
+            'context'   => 'DockerizedHelloworld',
+        ];
+
+        return new AMQPMessage(json_encode($data));
+    }
+
     protected function configure()
     {
         $this
@@ -43,16 +72,12 @@ final class LogGeneratorCommand extends AbstractCommand
 
         $connection = new AMQPStreamConnection('rabbitmq', 5672, 'php.daemon', '9cs88Hd3jjf', 'logstash');
         $channel = $connection->channel();
-        // $channel->exchange_declare('monolog', 'fanout', false, false, false);
-
-        $msg = new AMQPMessage("info: Hello World!");
-        $channel->basic_publish($msg, 'logs');
 
         while ($i < $qtd) {
             ++$i;
-            $msg = new AMQPMessage(sprintf("info: Hello World #%d!", $i));
-            $channel->basic_publish($msg, 'logs');
-            $output->writeln(sprintf('Sent message #<info>%s</>!', $i));
+            $message = $this->factoryMessage($i);
+            $channel->basic_publish($message, 'monolog');
+            $output->writeln(sprintf('Sent message #<info>%s</>...', $i));
         }
 
         $channel->close();
