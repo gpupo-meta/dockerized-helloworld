@@ -294,6 +294,12 @@ Se tudo correu bem você terá acesso aos serviços:
 * [Kibana](http://dockerized-helloworld.localhost:5601)
 * [Logstash API](http://dockerized-helloworld.localhost:9600/_node/hot_threads?human=true)
 
+Para o nosso tutorial, o mais importante é que você consiga visualizar os logs gerados pela aplicação e para isso deverá acessar o Kibana e escolher no menu o item **Discover**. Você deverá ver uma tela semelhante a essa:
+
+![Kibana dashboard image](https://meta.gpupo.com/dockerized-helloworld/img/kibana.png)
+
+---
+
 :memo: O [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) está preparado para também enviar os logs do NGINX para um servidor de logs, em um ambiente de produção.
 
 #### Algumas dicas importantes
