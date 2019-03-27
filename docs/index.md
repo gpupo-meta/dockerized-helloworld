@@ -109,7 +109,7 @@ Se tudo correu bem até aqui, em
 http://dockerized-helloworld.localhost/phpinfo.php você acessa informações sobre o serviço PHP em uso.
 
 
-**Passo 4**, acesso ao terminal do serviço **Interpretador** :computer: :
+**Passo 4**, acesso ao terminal do serviço **Interpretador**: :computer:
 
 	docker-compose exec php-fpm bash
 
@@ -122,7 +122,7 @@ Apesar de você ter instalado em seu sistema operacional, todo um conjunto de in
 
 	make install
 
-Você pode agora chamar o APP CLI deste projeto : :whale:
+Você pode agora chamar o APP CLI deste projeto: :whale:
 
 	bin/dockerized-helloworld
 
@@ -221,7 +221,7 @@ Para visualizar uma página que carrega o javascript e o css compilado, abra htt
 * [Sass Basics](https://sass-lang.com/guide)
 * [Webpack manual](https://webpack.js.org/concepts)
 
-# Extra services && Tools
+# Extra services & Tools
 
 A partir deste momento vamos incluir novos ``services`` em nosso projeto e para isso vamos deixar de usar o ``docker-compose file`` atual e passaremos a usar o arquivo ``Resources/docker-compose.extra-services.yaml``.
 
@@ -251,7 +251,7 @@ O [Redis](https://aws.amazon.com/pt/elasticache/what-is-redis/) é um armazename
 
 ### Persistência de logs na stack RELK
 
-Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma aplicação [Symfony 4](https://symfony.com/) gravará seus logs em ``var/logs/dev.log``, ``var/logs/prod.log`` ou ``var/logs/dev.log``, mas nós que estamos projetando uma aplicação que roda em containers precisamos de uma forma melhor de armazenar estes registros pois, um dos fundamentos do uso de containers é que cada container é projetado para atender um processamento por um tempo determinado e **é descartável**. Não podemos perder os logs da aplicação a cada vez que recriamos um container ou mudamos a imagem na qual ele é baseado. Poderíamos resolver este problema com a técnica de mapeamento de um diretório da máquina host para ``var/logs`` mas isto continua centralizando os logs em uma máquina e em uma arquitetura de nuvem, usamos muitas máquinas, então teríamos que abrir muitos diretórios para buscar uma informação e a partir de certa quantidade de máquinas, fazer isto se torna inviável. Então, uma engenharia que resolve de maneira muito habilidosa este problema é enviar todos os logs para um [servidor de logs](https://en.wikipedia.org/wiki/Server_log). Simples assim.
+Tradicionalmente, uma aplicação grava logs em um arquivo como por exemplo, uma aplicação [Symfony 4](https://symfony.com/) gravará seus logs em ``var/logs/dev.log``, ``var/logs/prod.log`` ou ``var/logs/dev.log``, mas nós que estamos projetando uma aplicação que roda em containers precisamos de uma forma melhor de armazenar estes registros pois, um dos fundamentos do uso de containers é que cada container é projetado para atender um processamento por um tempo determinado e **é descartável**. Não podemos perder os logs da aplicação a cada vez que recriamos um container ou mudamos a imagem na qual ele é baseado. Poderíamos resolver este problema com a técnica de mapeamento de um diretório da máquina host para ``var/logs`` mas isto continua centralizando os logs em uma máquina e em uma arquitetura de nuvem, usamos muitas máquinas, então teríamos que abrir muitos diretórios para buscar uma informação e a partir de certa quantidade de máquinas, fazer isto se torna inviável. Então, uma engenharia que resolve de maneira muito habilidosa este problema é enviar todos os logs para um [servidor de logs](https://en.wikipedia.org/wiki/Server_log). Simples assim. :boom:
 
 Para montar esse servidor usamos basicamente 4 ``services``:
 
@@ -262,10 +262,56 @@ Para montar esse servidor usamos basicamente 4 ``services``:
 3.  (**L**) Logstash;
 4.  (**K**) Kibana.
 
+Nossa aplicação, utilizando um drive específico ([php-amqplib/php-amqplib](https://github.com/php-amqplib/php-amqplib)), envia os logs para um servidor [RabbitMQ](https://www.rabbitmq.com/).
+
+#### Levantando a stack
+
+Para nossa :whale: **Dockerized Application** não é interessante responsabilizar-se pela configuração da **stack RELK**, então eu preparei este conjunto de serviços em um lugar secreto, que você simplesmente vai levantar com o seguinte setup: :computer:
+
+	make relk@up
+
+Criação de index Logstash: :whale:
+
+```bash
+curl -XPOST -D- 'http://kibana:5601/api/saved_objects/index-pattern' \
+	-H 'Content-Type: application/json' \
+	-H 'kbn-version: 6.2.4' \
+	-d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
+```
+
+Agora vamos testar o envio de logs: :whale:
+
+	bin/dockerized-helloworld log:generator 100
+
+##### Acesso aos dashboards dos serviços da stack RELK
+
+Se tudo correu bem você terá acesso aos serviços:
+
+* [RabbitMQ](http://dockerized-helloworld.localhost:15672/), usuário ``admin``, senha ``d0ck3r1zzd``
+* [Kibana](http://dockerized-helloworld.localhost:5601)
+* [Logstash API](http://dockerized-helloworld.localhost:9600/_node/hot_threads?human=true)
+
+O [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) está preparado para também enviar os logs do NGINX para um servidor de logs, em um ambiente de produção.
+
+#### Algumas dicas importantes
+
+1. Muita informação é ruído e pouca informação é inadequado. É difícil encontrar o equilíbrio do ideal, mas esse é o desafio. No caso de microsserviços, pense também na rastreabilidade entre serviços, como o uso de um identificador do ``service``. Outra coisa a ter em mente é que os logs são temporais, não permanentes, com vida útil de alguns meses.
+
+2. Siga [severity levels](https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels) (Syslog Protocol).
+
+3. Estruture seus logs. Siga um padrão JSON acordado para o registro. Isso facilita a análise e a pesquisa.
+
+4. Grave os registros com cuidado sem não prejudicar o desempenho
+
+5. Considere que o servidor de log pode estar indisponível e sua aplicação precisa resistir a isso
+
+6. Em uma aplicação PHP madura, utilize o [Monolog](https://github.com/Seldaek/monolog/). Veja [Symfony Guide Logging](https://symfony.com/doc/current/logging.html).
+
+---
 
 ### Make
 
-[Make](https://en.wikipedia.org/wiki/Make_(software%29) é uma ferramenta para automatização de build criada em 1976 e desenhada para resolver problemas durante o processo de build, originalmente usada em projetos de [linguagem C](https://en.wikipedia.org/wiki/C_(programming_language%29) e que passou a ser amplamente utilizada em projetos [Unix Like](https://en.wikipedia.org/wiki/Unix-like).
+[Make](https://en.wikipedia.org/wiki/Make_%28software%29) é uma ferramenta para automatização de build criada em 1976 e desenhada para resolver problemas durante o processo de build, originalmente usada em projetos de [linguagem C](https://en.wikipedia.org/wiki/C_%28programming_language%29) e que passou a ser amplamente utilizada em projetos [Unix Like](https://en.wikipedia.org/wiki/Unix-like).
 
 Seu arquivo de configuração é o [Makefile](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/Makefile) que está na raiz deste projeto. É nesse arquivo que configuramos ``targets``. Cada target é uma sequencia de instruções, que pode por sua vez depender de outros targets.
 
@@ -333,7 +379,6 @@ Mais informações leia o[FAQ](https://www.php-fig.org/faqs/) e visite o [reposi
 
 No arquivo [.php_cs.dist](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.php_cs.dist) é configurado este conjunto de regras.
 
-
 Agora vamos a um exemplo prático!
 Apesar de funcionar, o arquivo [src/Traits/VeryWrongCodeStyleTrait.php](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/src/Traits/VeryWrongCodeStyleTrait.php) está mal escrito e ignora vários padrões de escrita. Mas que padrões são estes?
 Rode o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer): :whale:
@@ -399,17 +444,34 @@ Nesse diff que o arquivo recebeu modificações:
 * Trocou as ``{`` de lugar, de acordo com o codding style definido
 * Adicionou ponto final a linhas de documentação
 
-É uma boa prática você utilizar o ``make php-cs-fixer`` após terminar o desenvolvimento de uma feature PHP.
-
+:memo: É uma boa prática você utilizar o ``make php-cs-fixer`` após terminar o desenvolvimento de uma feature PHP.
 
 ---
 
 # Considerações finais
 
-![Congratulations](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
+![Congratulations image](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
 
-Muito bem, você zerou o jogo :)
+Muito bem, você zerou o jogo :) :checkered_flag:
 
-Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues).
+Você pode contribuir com este projeto criando uma [Pull Request](https://help.github.com/en/articles/creating-a-pull-request) ou informando o bug/melhoria em [issues](https://github.com/gpupo-meta/dockerized-helloworld/issues). Isto inclui correções ortográficas.
 
 Veja a [lista de melhorias](https://github.com/gpupo-meta/dockerized-helloworld/labels/enhancement) que precisam de desenvolvimento.
+
+### Shutdown
+
+Para desligar todos os container levantados durante a execução deste tutorial, você pode usar este comando: :computer:
+
+	docker stop $(docker ps -a -q)
+
+:memo: Agora um extra, se você configurou seu computador usando o [ gpupo-meta/setup-machine](https://github.com/gpupo-meta/setup-machine), basta executar:  :computer:
+
+	docker-stop-all
+
+Depois de carregar milhões de bits em imagens Docker, talvez você precise liberar removendo todas as imagens Docker em cache: :computer:
+
+	docker-remove-all
+
+---
+
+![Cya image](https://meta.gpupo.com/dockerized-helloworld/img/pizzatime.jpg)
