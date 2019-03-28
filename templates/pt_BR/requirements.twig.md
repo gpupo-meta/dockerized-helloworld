@@ -10,4 +10,4 @@ Alguns comandos devem ser executados em seu terminal tradicional e quando for es
 
 Um último requisito importante é **paciência** e **dedicação** pois é bastante coisa pra ler, seguir referências, executar comandos, analizar diffs e refazer até entender. Pra te motivar e também responsabilizar, eu gastei várias horas de trabalho escrevendo este tutorial, tirando as melhores técnicas do meu vaú de tesouross, para que você aí do futuro aprendesse a usá-las, então, me dê algum crédito e esforço quando seguir com este tutorial, ou, se preferir algo mais facil, por [seguir por aqui](http://bfy.tw/Mw0J) ...
 
-Se tudo estiver pronto, selecione seu player e vamos em frente.
+Se tudo estiver pronto, selecione seu personagem e vamos em frente.

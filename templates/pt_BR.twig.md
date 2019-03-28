@@ -122,6 +122,9 @@ O Makefile está configurado para rodar os testes Unitários
 
 #### O problema de permissões
 
+Os arquivos gerados a partir da [shell session](https://superuser.com/questions/651111/what-is-the-definition-of-a-session-in-linux) do :whale: container não possuem o mesmo dono que os arquivos gerados na session da :computer: máquina host. Isto porque os linux users são diferentes em cada session. Em um caso muito comum, o arquivo gerado pela session do container pertencerá ao root do container e também ao root do host, e seu usuário atual, na máquina do host não poderá editá-lo. Existem várias formas de contornar isso. Serei agressivo, na escolha do contorno, dizendo ao projeto "dê-me tudo isso aqui, pois é meu!" com sudo + chown: :computer:
+
+	sudo chown -R $USER:$USER ./
 
 ....
 
