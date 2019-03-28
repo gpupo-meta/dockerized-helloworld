@@ -15,10 +15,16 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\DockerizedHelloworld\Tests;
+namespace Gpupo\DockerizedHelloworld\Entity;
 
-use PHPUnit\Framework\TestCase;
+use Gpupo\DockerizedHelloworld\Traits\VeryWrongCodeStyleTrait;
 
-abstract class TestCaseAbstract extends TestCase
+class Person
 {
+    use VeryWrongCodeStyleTrait;
+
+    public function __construct(string $name = 'World')
+    {
+        $this->setName($name);
+    }
 }

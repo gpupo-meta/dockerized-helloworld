@@ -465,9 +465,84 @@ Experimente: :whale:
 
 ### PHPMD
 
-O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces coding standards é configurado no arquivo [.phpmd.xml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.phpmd.xml)
+O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces coding standards é configurado no arquivo [.phpmd.xml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.phpmd.xml).
+
+	make phpmd
+
+### Phan
+
 
 ---
+
+### Testes unitários
+
+#### Esqueletos automáticos
+
+Nosso projeto usa a [gpupo/common](https://opensource.gpupo.com/common/) que contém o comando ``vendor/bin/developer-toolbox`` que pode nos ajudar a criar um teste unitário esqueleto a partir de uma classe existente.
+
+Se quisermos criar um teste unitário para o objeto ``Gpupo\DockerizedHelloworld\Entity\Person``: :whale:
+
+	vendor/bin/developer-toolbox generate --class='Gpupo\DockerizedHelloworld\Entity\Person'
+
+O comando acima gerará o arquivo ``tests/Entity/PersonTest.php`` que deve conter um conteúdo semelhante a este:
+
+```PHP
+//...
+namespace Gpupo\DockerizedHelloworld\Tests\Entity;
+
+use PHPUnit\Framework\TestCase as CoreTestCase;
+use Gpupo\DockerizedHelloworld\Entity\Person;
+
+/**
+ * @coversDefaultClass \Gpupo\DockerizedHelloworld\Entity\Person
+ * ...
+ */
+class PersonTest extends CoreTestCase
+{
+    public function dataProviderPerson()
+    {
+        $expected = [
+            "name" => "d1b72da",
+        ];
+        $object = new Person();
+
+        return [[$object, $expected]];
+    }
+
+    /**
+     * @testdox Have a getter getName() to get Name
+     * @dataProvider dataProviderPerson
+     * @cover ::getName
+     * @small
+     * @test
+     *
+     * @param Person $person Main Object
+     * @param array $expected Fixture data
+     */
+    public function testGetName(Person $person, array $expected)
+    {
+        $person->setName($expected['name']);
+        $this->assertSame($expected['name'], $person->getName());
+    }
+
+    /**
+     * @testdox Have a setter setName() to set Name
+     * @dataProvider dataProviderPerson
+     * @cover ::setName
+     * @small
+     * @test
+     *
+     * @param Person $person Main Object
+     * @param array $expected Fixture data
+     */
+    public function testSetName(Person $person, array $expected)
+    {
+        $person->setName($expected['name']);
+        $this->assertSame($expected['name'], $person->getName());
+    }
+}
+
+```
 
 # Considerações finais
 
