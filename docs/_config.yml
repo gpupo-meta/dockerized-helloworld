@@ -6,3 +6,4 @@ kramdown:
   syntax_highlighter: rouge
 plugins:
   - jemoji
+  - jekyll-redirect-from
