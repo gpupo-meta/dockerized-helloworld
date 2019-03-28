@@ -17,11 +17,11 @@ declare(strict_types=1);
 
 namespace Gpupo\DockerizedHelloworld\Console\Command;
 
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use PhpAmqpLib\Connection\AMQPStreamConnection;
-use PhpAmqpLib\Message\AMQPMessage;
 
 final class LogGeneratorCommand extends AbstractCommand
 {
@@ -48,7 +48,7 @@ final class LogGeneratorCommand extends AbstractCommand
             'level' => 200,
             'message' => vsprintf('%s Estou %s testando %s o envio %s de logs a partir %s de App PHP %s ', $this->words),
             'extra' => ['i' => $i],
-            'context'   => 'DockerizedHelloworld',
+            'context' => 'DockerizedHelloworld',
         ];
 
         return new AMQPMessage(json_encode($data));

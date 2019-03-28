@@ -368,8 +368,6 @@ A imagem [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gp
 
 ### Coding styles
 
-Uma ferramenta muito importante é o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) que vai alinhar o código escrito de acordo com as regras de padrão selecionados para o projeto.
-
 Neste projeto seguimos [PHP Standards Recommendations](https://www.php-fig.org/psr/)(PSR) e também padrões sugeridos pelo projeto [Symfony](https://symfony.com/) com objetivo facilitar a reutilização de código entre os diversos projetos que implementem determinado padrão.
 
 Se você ainda não está familiarizado com as PSRs, saiba que existem PSRs para implementações de [autoload](http://br1.php.net/manual/en/function.autoload.php)[ (](http://www.php-fig.org/psr/psr-4/)[PSR-4](http://www.php-fig.org/psr/psr-4/)), sugestões de estilos de código, como posição de chaves, indentação ([Usar tabulações ou espaços?](http://www.jwz.org/doc/tabs-vs-spaces.html)) ([PSR-1](http://www.php-fig.org/psr/psr-1/) e [PSR-2](http://www.php-fig.org/psr/psr-2/)).
@@ -386,10 +384,13 @@ Mais informações leia o [FAQ](https://www.php-fig.org/faqs/) e visite o [repos
 *   [PSR-5: PHPDoc (draft)](https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md)
 *   [Symfony Coding Standards](https://symfony.com/doc/current/contributing/code/standards.html)
 
+#### php-cs-fixer
+
+Uma ferramenta muito importante é o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) que vai alinhar o código escrito de acordo com as regras de padrão selecionados para o projeto.
+
 No arquivo [.php_cs.dist](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.php_cs.dist) é configurado este conjunto de regras.
 
-Agora vamos a um exemplo prático!
-Apesar de funcionar, o arquivo [src/Traits/VeryWrongCodeStyleTrait.php](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/src/Traits/VeryWrongCodeStyleTrait.php) está mal escrito e ignora vários padrões de escrita. Mas que padrões são estes?
+Vamos a um exemplo prático! Apesar de funcionar, o arquivo [src/Traits/VeryWrongCodeStyleTrait.php](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/src/Traits/VeryWrongCodeStyleTrait.php) está mal escrito e ignora vários padrões de escrita. Mas que padrões são estes?
 Rode o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer): :whale:
 
 	make php-cs-fixer
@@ -455,13 +456,19 @@ Nesse diff que o arquivo recebeu modificações:
 
 :memo: É uma boa prática você utilizar o ``make php-cs-fixer`` após terminar o desenvolvimento de uma feature PHP.
 
-### PHPCBF
+#### PHP_CodeSniffer
+
+Outra ferramenta importante é o [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) que também irá nos ajudar a manter um padrão acordado e é configurado no arquivo [phpcs.xml.dist](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/phpcs.xml.dist)
+
+Experimente: :whale:
+
+	make phpcbf
 
 ...
 
 ### PHPMD
 
-O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces coding standards é configurado no arquivo .phpmd.xml
+O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces coding standards é configurado no arquivo [.phpmd.xml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.phpmd.xml)
 
 ---
 
