@@ -571,7 +571,8 @@ Lembre-se de que o arquivo ``tests/Entity/PersonTest.php`` é um rascunho inicia
 
 Quando você tentar editar o arquivo ``tests/Entity/PersonTest.php`` em seu IDE, não conseguirá gravar suas alterações, o que nos leva para a próxima fase ...
 
-![Permission problem image](https://meta.gpupo.com/dockerized-helloworld/img/permission.png)
+![](https://meta.gpupo.com/dockerized-helloworld/img/permission.png)
+
 
 #### O problema de permissões
 

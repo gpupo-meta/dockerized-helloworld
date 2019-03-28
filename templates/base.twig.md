@@ -1,11 +1,8 @@
-{% macro add_img(filename, legend = '') %}
-![{{legend}}](https://meta.gpupo.com/dockerized-helloworld/img/{{filename}})
-{% endmacro %}
 
-{% import _self as base %}
+{% import 'templates/includes/macros.twig' as macros %}
 
 # Main Quest
 {% block main_quest %}
 {% endblock %}
 
-{{ base.add_img('pizzatime.jpg', 'Cya image') }}
+{{ macros.add_img('pizzatime.jpg', 'Cya image') }}

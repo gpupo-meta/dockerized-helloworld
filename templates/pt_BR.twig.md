@@ -1,4 +1,5 @@
 {% extends "templates/base.twig.md" %}
+{% import 'templates/includes/macros.twig' as macros %}
 
 {% block main_quest %}
 
@@ -117,7 +118,7 @@ O Makefile está configurado para rodar os testes Unitários
 
 {% include 'templates/pt_BR/developer-toolbox-generate.twig.md' %}
 
-![Permission problem image](https://meta.gpupo.com/dockerized-helloworld/img/permission.png)
+{{ macros.add_img('permission.png') }}
 
 #### O problema de permissões
 
