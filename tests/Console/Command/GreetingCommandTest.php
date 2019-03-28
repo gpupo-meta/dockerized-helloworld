@@ -17,10 +17,10 @@ declare(strict_types=1);
 
 namespace Gpupo\DockerizedHelloworld\Tests\Console\Command;
 
+use Gpupo\CommonSdk\Factory;
 use Gpupo\DockerizedHelloworld\Console\Command\GreetingCommand;
 use PHPUnit\Framework\TestCase as CoreTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
-use Gpupo\CommonSdk\Factory;
 
 /**
  * @coversDefaultClass \Gpupo\DockerizedHelloworld\Console\Command\GreetingCommand
@@ -50,8 +50,8 @@ class GreetingCommandTest extends CoreTestCase
            'name' => $name,
        ]);
 
-       $output = $commandTester->getDisplay();
-       $expected = sprintf('Hello %s', $name);
-       $this->assertStringContainsString($expected, $output);
+        $output = $commandTester->getDisplay();
+        $expected = sprintf('Hello %s', $name);
+        $this->assertStringContainsString($expected, $output);
     }
 }

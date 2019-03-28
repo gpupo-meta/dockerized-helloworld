@@ -22,3 +22,7 @@ Nesse diff que o arquivo recebeu modificações:
 * Adicionou ponto final a linhas de documentação.
 
 :memo: É uma boa prática você utilizar o ``make php-cs-fixer`` após terminar o desenvolvimento de uma feature PHP.
+
+Para voltar a classe ao seu estado anterior e lhe permitir aproveitar melhor este tutorial:
+
+	git checkout src/Traits/VeryWrongCodeStyleTrait.php
