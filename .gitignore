@@ -11,3 +11,6 @@ dist
 *tmp.*
 *.log
 public/build
+
+#This Project only:
+tests/Entity/PersonTest.php
