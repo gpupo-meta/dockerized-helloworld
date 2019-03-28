@@ -495,9 +495,13 @@ Você verá algo semelhante a essa saída:
 ![Image](https://meta.gpupo.com/dockerized-helloworld/img/phpunit.png)
 
 
+o diretório ``tests/`` guarda nos testes unitários que são executados pelo [phpunit](https://phpunit.de/). Apesar de apenas existir o teste [tests/Console/Command/GreetingCommandTest.php](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/tests/Console/Command/GreetingCommandTest.php) que valida a saudação emitida pelo comando de console ``bin/dockerized-helloworld greeting `` executado anteriormente, algumas técnicas interessantes são utilizadas, como a validação repetida usando [dataproviders](https://phpunit.readthedocs.io/en/8.0/writing-tests-for-phpunit.html#data-providers) e o teste do output de um [Command](https://symfony.com/doc/current/console.html).
+
+ Vamos para algo mais simples ...
+
 #### Esqueletos automáticos
 
-Nosso projeto usa a [gpupo/common](https://opensource.gpupo.com/common/) que contém o comando ``vendor/bin/developer-toolbox`` que pode nos ajudar a criar um teste unitário esqueleto a partir de uma classe existente.
+Nosso [projeto dockerized-helloworld](https://github.com/gpupo-meta/dockerized-helloworld) usa a [gpupo/common](https://opensource.gpupo.com/common/) que contém o comando ``vendor/bin/developer-toolbox`` que pode nos ajudar a criar um teste unitário esqueleto a partir de uma classe existente.
 
 Se quisermos criar um teste unitário para o objeto ``Gpupo\DockerizedHelloworld\Entity\Person``: :whale:
 
