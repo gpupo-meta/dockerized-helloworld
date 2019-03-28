@@ -1,5 +1,3 @@
-
-
 # Main Quest
 
 Este tutorial/projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares para o desenvolvimento de projeto web, mas
@@ -21,7 +19,8 @@ Um último requisito importante é **paciência** e **dedicação** pois é bast
 
 Se tudo estiver pronto, selecione seu player e vamos em frente.
 
-![Start](https://meta.gpupo.com/dockerized-helloworld/img/start.png)
+![Image](https://meta.gpupo.com/dockerized-helloworld/img/start.png)
+
 
 ## Containers e Serviços
 
@@ -138,7 +137,8 @@ Execução do "Hello World" : :whale:
 **Dúvidas?** Se você precisa de ajuda para entender um dos conceitos acima, [crie uma issue](https://github.com/gpupo-meta/dockerized-helloworld/issues/new),
 e marque-a com o **label** ``question``.
 
-![Game over image](https://meta.gpupo.com/dockerized-helloworld/img/gameover.png)
+![Image](https://meta.gpupo.com/dockerized-helloworld/img/gameover.png)
+
 
 # Javascript & CSS/ Webpack, SASS, ES2015
 
@@ -567,7 +567,7 @@ Lembre-se de que o arquivo ``tests/Entity/PersonTest.php`` é um rascunho inicia
 
 Quando você tentar editar o arquivo ``tests/Entity/PersonTest.php`` em seu IDE, não conseguirá gravar suas alterações, o que nos leva para a próxima fase ...
 
-![](https://meta.gpupo.com/dockerized-helloworld/img/permission.png)
+![Image](https://meta.gpupo.com/dockerized-helloworld/img/permission.png)
 
 
 #### O problema de permissões
@@ -579,7 +579,8 @@ Quando você tentar editar o arquivo ``tests/Entity/PersonTest.php`` em seu IDE,
 
 # Considerações finais
 
-![Congratulations image](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
+![Image](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
+
 
 Muito bem, você zerou o jogo :) :checkered_flag:
 

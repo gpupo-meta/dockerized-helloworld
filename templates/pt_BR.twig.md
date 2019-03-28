@@ -9,7 +9,7 @@
 
 {% include 'templates/pt_BR/requirements.twig.md' %}
 
-![Start](https://meta.gpupo.com/dockerized-helloworld/img/start.png)
+{{ macros.add_img('start.png') }}
 
 ## Containers e Serviços
 
@@ -46,7 +46,7 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 **Dúvidas?** Se você precisa de ajuda para entender um dos conceitos acima, [crie uma issue](https://github.com/gpupo-meta/dockerized-helloworld/issues/new),
 e marque-a com o **label** ``question``.
 
-![Game over image](https://meta.gpupo.com/dockerized-helloworld/img/gameover.png)
+{{ macros.add_img('gameover.png') }}
 
 # Javascript & CSS/ Webpack, SASS, ES2015
 
@@ -129,7 +129,7 @@ O Makefile está configurado para rodar os testes Unitários
 
 # Considerações finais
 
-![Congratulations image](https://meta.gpupo.com/dockerized-helloworld/img/congrats.jpg)
+{{ macros.add_img('congrats.jpg') }}
 
 {% include 'templates/pt_BR/final-considerations.twig.md' %}
 

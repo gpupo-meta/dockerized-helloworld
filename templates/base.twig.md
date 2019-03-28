@@ -1,6 +1,4 @@
-
 {% import 'templates/includes/macros.twig' as macros %}
-
 # Main Quest
 {% block main_quest %}
 {% endblock %}

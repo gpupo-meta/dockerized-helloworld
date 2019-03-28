@@ -65,16 +65,20 @@ cs: php-cs-fixer phpcbf
 
 ## Apply Php CS fixer rules
 php-cs-fixer:
-	 ${COMPOSER_BIN}/php-cs-fixer fix --verbose
+	${COMPOSER_BIN}/php-cs-fixer fix --verbose
+	printf "${COLOR_COMMENT}Done${COLOR_RESET}\n"
+
 
 ## Apply PHPCBF fix rules
 phpcbf:
 	 ${COMPOSER_BIN}/phpcbf -i;
 	 ${COMPOSER_BIN}/phpcbf -v
+	 printf "${COLOR_COMMENT}Done${COLOR_RESET}\n"
 
 ## Run PHP Mess Detector on the test code
 phpmd:
 	${COMPOSER_BIN}/phpmd src text codesize,unusedcode,naming,design --exclude vendor,tests,Resources
+	printf "${COLOR_COMMENT}Done${COLOR_RESET}\n"
 
 ## Clean temporary files
 clean:
@@ -89,6 +93,7 @@ phan:
 ## Run phpunit testcases
 phpunit:
 	${VENDOR_BIN}/phpunit --testdox
+	printf "${COLOR_COMMENT}Done${COLOR_RESET}\n"
 
 ## Turn RELK stack ON
 relk@up:
@@ -103,3 +108,8 @@ relk@down:
 ## Build root md files and docs/ files
 build:
 	bin/dockerized-helloworld compile;
+	printf "${COLOR_COMMENT}Done${COLOR_RESET}\n"
+
+## Run localhost github page on port 4000
+server@run:
+	docker run -t --rm -v "$PWD/docs":/usr/src/app -p "4000:4000" starefossen/github-pages
