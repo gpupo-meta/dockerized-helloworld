@@ -111,8 +111,13 @@ O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces codi
 
 ### Testes unitários
 
-O Makefile está configurado para rodar os testes Unitários
+O Makefile está configurado para rodar os testes Unitários: :whale:
 
+	make phpunit
+
+Você verá algo semelhante a essa saída:
+
+{{ macros.add_img('phpunit.png') }}
 
 #### Esqueletos automáticos
 
