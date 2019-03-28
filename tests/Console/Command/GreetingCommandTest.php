@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\DockerizedHelloworld\Console\Command;
+namespace Gpupo\DockerizedHelloworld\Tests\Console\Command;
 
 use Gpupo\DockerizedHelloworld\Console\Command\GreetingCommand;
 use PHPUnit\Framework\TestCase as CoreTestCase;

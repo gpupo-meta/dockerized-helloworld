@@ -108,6 +108,8 @@ relk@down:
 ## Build root md files and docs/ files
 build:
 	bin/dockerized-helloworld compile;
+	bin/dockerized-helloworld compile en;
+	bin/dockerized-helloworld compile es;
 	printf "${COLOR_COMMENT}Done${COLOR_RESET}\n"
 
 ## Run localhost github page on port 4000
