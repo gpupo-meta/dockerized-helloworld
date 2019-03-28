@@ -100,16 +100,25 @@ As ferramentas php-cs-fixer, PHP_CodeSniffer complementam-se e uma pode apontar 
 
 	make cs
 
-
 ### PHPMD
 
 O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces coding standards é configurado no arquivo [.phpmd.xml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.phpmd.xml). :whale:
 
 	make phpmd
 
-
 ### Phan
 
+[Phan](https://github.com/phan/phan), static analyzer para o PHP. Está configurado no arquivo [config/phan.php ](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/config/phan.php) e vai nos apontar melhorias e possíveis erros da aplicação: :whale:
+
+	make phan
+
+### PHPSTAN
+
+	make phpstan
+
+### PHPLOC
+
+	make phploc
 
 ---
 

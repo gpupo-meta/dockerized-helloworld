@@ -467,6 +467,10 @@ Nesse diff que o arquivo recebeu modificações:
 
 :memo: É uma boa prática você utilizar o ``make php-cs-fixer`` após terminar o desenvolvimento de uma feature PHP.
 
+Para voltar a classe ao seu estado anterior e lhe permitir aproveitar melhor este tutorial:
+
+	git checkout src/Traits/VeryWrongCodeStyleTrait.php
+
 #### PHP_CodeSniffer
 
 Outra ferramenta importante é o [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) que também irá nos ajudar a manter um padrão acordado e é configurado no arquivo [phpcs.xml.dist](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/phpcs.xml.dist)
@@ -475,16 +479,29 @@ Experimente: :whale:
 
 	make phpcbf
 
-...
+As ferramentas php-cs-fixer, PHP_CodeSniffer complementam-se e uma pode apontar uma melhoria que outra não pegou. Com o ``make`` podemos criar um ``target`` se seja ajunte uma coleção de outros ``targets``. Em nosso Makefile, o target **cs** se presta isso: :whale:
+
+	make cs
 
 ### PHPMD
 
-O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces coding standards é configurado no arquivo [.phpmd.xml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.phpmd.xml).
+O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces coding standards é configurado no arquivo [.phpmd.xml](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.phpmd.xml). :whale:
 
 	make phpmd
 
 ### Phan
 
+[Phan](https://github.com/phan/phan), static analyzer para o PHP. Está configurado no arquivo [config/phan.php ](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/config/phan.php) e vai nos apontar melhorias e possíveis erros da aplicação: :whale:
+
+	make phan
+
+### PHPSTAN
+
+	make phpstan
+
+### PHPLOC
+
+	make phploc
 
 ---
 
