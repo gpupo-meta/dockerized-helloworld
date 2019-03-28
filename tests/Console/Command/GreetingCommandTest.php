@@ -19,47 +19,39 @@ namespace Gpupo\DockerizedHelloworld\Tests\Console\Command;
 
 use Gpupo\DockerizedHelloworld\Console\Command\GreetingCommand;
 use PHPUnit\Framework\TestCase as CoreTestCase;
+use Symfony\Component\Console\Tester\CommandTester;
+use Gpupo\CommonSdk\Factory;
 
 /**
  * @coversDefaultClass \Gpupo\DockerizedHelloworld\Console\Command\GreetingCommand
  */
 class GreetingCommandTest extends CoreTestCase
 {
-    /**
-     * @return GreetingCommand
-     */
     public function dataProviderGreetingCommand()
     {
-        $expected = [
-                ];
-        $object = new GreetingCommand();
+        $command = new GreetingCommand(new Factory());
+        $commandTester = new CommandTester($command);
 
-        return [[$object, $expected]];
+        return [
+            [$command, $commandTester, 'Elvis Aaron Presley'],
+            [$command, $commandTester, 'Ron Kenoly'],
+            [$command, $commandTester, 'Vietnam'],
+        ];
     }
 
     /**
-     * @testdox Have a method ``configure()`` .
-     * @cover ::configure
-     * @dataProvider dataProviderGreetingCommand
-     *
-     * @param GreetingCommand $greetingCommand Main Object
-     * @param array           $expected        Fixture data
-     */
-    public function testConfigure(GreetingCommand $greetingCommand, array $expected)
-    {
-        $this->markTestIncomplete('configure() incomplete!');
-    }
-
-    /**
-     * @testdox Have a method ``execute()`` .
+     * @testdox It has a well-educated ``execute`` method to say hello.
      * @cover ::execute
      * @dataProvider dataProviderGreetingCommand
-     *
-     * @param GreetingCommand $greetingCommand Main Object
-     * @param array           $expected        Fixture data
      */
-    public function testExecute(GreetingCommand $greetingCommand, array $expected)
+    public function testExecute(GreetingCommand $command, CommandTester $commandTester, string $name)
     {
-        $this->markTestIncomplete('execute() incomplete!');
+        $commandTester->execute([
+           'name' => $name,
+       ]);
+
+       $output = $commandTester->getDisplay();
+       $expected = sprintf('Hello %s', $name);
+       $this->assertStringContainsString($expected, $output);
     }
 }
