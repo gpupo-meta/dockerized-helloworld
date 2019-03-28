@@ -1,5 +1,5 @@
 ---
 layout: default
-permalink: /pt_BR.html
+permalink: /
 redirect_to: /pt_BR.html
 ---
