@@ -130,5 +130,6 @@ O Makefile está configurado para rodar os testes Unitários
 {% include 'templates/pt_BR/final-considerations.twig.md' %}
 
 ---
+{:toc}
 
 ![Cya image](https://meta.gpupo.com/dockerized-helloworld/img/pizzatime.jpg)

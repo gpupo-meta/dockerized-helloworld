@@ -100,10 +100,6 @@ relk@down:
 	cd dockerized-relk && docker-compose down;
 	printf "${COLOR_COMMENT}RELK stack OFF${COLOR_RESET}\n"
 
-## Build and publish
-publish:
-	echo "---" > docs/index.md;
-	echo "layout: default" >> docs/index.md;
-	echo "---" >> docs/index.md;
-	cat README.md  >> docs/index.md;
-	git commit -am "Add info" && git push;
+## Build root md files and docs/ files
+build:
+	bin/dockerized-helloworld compile;
