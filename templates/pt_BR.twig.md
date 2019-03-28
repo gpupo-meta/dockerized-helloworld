@@ -1,4 +1,6 @@
-# Main Quest
+{% extends "templates/base.twig.md" %}
+
+{% block main_quest %}
 
 {% include 'templates/pt_BR/intro.twig.md' %}
 
@@ -119,6 +121,7 @@ O Makefile está configurado para rodar os testes Unitários
 
 #### O problema de permissões
 
+
 ....
 
 ---
@@ -129,7 +132,4 @@ O Makefile está configurado para rodar os testes Unitários
 
 {% include 'templates/pt_BR/final-considerations.twig.md' %}
 
----
-{:toc}
-
-![Cya image](https://meta.gpupo.com/dockerized-helloworld/img/pizzatime.jpg)
+{% endblock %}

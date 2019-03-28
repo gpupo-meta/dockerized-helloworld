@@ -2,6 +2,8 @@
 layout: default
 permalink: /pt_BR.html
 ---
+
+
 # Main Quest
 
 Este tutorial/projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares para o desenvolvimento de projeto web, mas
@@ -573,6 +575,7 @@ Quando você tentar editar o arquivo ``tests/Entity/PersonTest.php`` em seu IDE,
 
 #### O problema de permissões
 
+
 ....
 
 ---
@@ -601,7 +604,6 @@ Depois de carregar milhões de bits em imagens Docker, talvez você precise libe
 
 	docker-remove-all
 
----
-{:toc}
 
 ![Cya image](https://meta.gpupo.com/dockerized-helloworld/img/pizzatime.jpg)
+
