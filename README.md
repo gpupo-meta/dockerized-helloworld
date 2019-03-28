@@ -299,7 +299,7 @@ Para o nosso tutorial, o mais importante é que você consiga visualizar os logs
 
 :memo: Essa mesma lógica de envio de logs para um local centralizado pode ser adotada por qualquer software, não somente Apps PHP. O [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) está preparado para também enviar os logs do NGINX para um servidor de logs, em um ambiente de produção.
 
-#### Algumas dicas importantes
+#### Algumas dicas sobre logs
 
 1. Muita informação é ruído e pouca informação é inadequado. É difícil encontrar o equilíbrio do ideal, mas esse é o desafio. No caso de microsserviços, pense também na rastreabilidade entre serviços, como o uso de um identificador do ``service``. Outra coisa a ter em mente é que os logs são temporais, não permanentes, com vida útil de alguns meses.
 2. Siga [severity levels](https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels) (Syslog Protocol).
@@ -312,6 +312,12 @@ Para o nosso tutorial, o mais importante é que você consiga visualizar os logs
 
 * [Tutorials for using RabbitMQ in various ways](http://www.rabbitmq.com/getstarted.html)
 * [Tutorial RabbitMQ X PHP](https://www.rabbitmq.com/tutorials/tutorial-one-php.html)
+
+#### Outras persistências
+
+De fato você já está acostumado a persistir fora da aplicação informações como os dados no banco relacional.
+Um artefato importante a ser persistido externamente são arquivos estáticos enviados por usuários a partir de formulários de upload por exemplo.
+Para atender esta demanda eu uso o projeto [Content Butler](https://github.com/gpupo/content-butler) associado ao [Doctrine PHP Content Repository ODM](https://www.doctrine-project.org/projects/doctrine-phpcr-odm/en/latest/index.html) que trata estes assets como objetos e os gerencia em um servidor [Apache Jackrabbit](https://jackrabbit.apache.org/jcr/index.html). 
 
 ---
 
