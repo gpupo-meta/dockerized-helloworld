@@ -476,6 +476,9 @@ O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces codi
 
 ### Testes unitários
 
+O Makefile está configurado para rodar os testes Unitários
+
+
 #### Esqueletos automáticos
 
 Nosso projeto usa a [gpupo/common](https://opensource.gpupo.com/common/) que contém o comando ``vendor/bin/developer-toolbox`` que pode nos ajudar a criar um teste unitário esqueleto a partir de uma classe existente.
@@ -541,8 +544,24 @@ class PersonTest extends CoreTestCase
         $this->assertSame($expected['name'], $person->getName());
     }
 }
-
 ```
+
+Execute os testes Unitários: :whale:
+
+	make phpunit
+
+Lembre-se de que o arquivo ``tests/Entity/PersonTest.php`` é um rascunho inicial
+ e você precisa continuar seu desenvolvimento para transformá-lo em um teste de qualidade.
+
+Quando você tentar editar o arquivo ``tests/Entity/PersonTest.php`` em seu IDE, não conseguirá gravar suas alterações, o que nos leva para a próxima fase ...
+
+![Permission problem image](https://meta.gpupo.com/dockerized-helloworld/img/permission.png)
+
+#### O problema de permissões
+
+....
+
+---
 
 # Considerações finais
 
