@@ -150,7 +150,7 @@ A seguir temos incrementos que lidam com a forma de trabalho usando a imagem [gp
 
 Para a gestão de dependências CSS/Javascript utilizamos o YARN que já está devidamente instalado e configurado na imagem gpupo/container-orchestration:symfony-dev utilizada no service PHP-FPM do Stack de desenvolvimento.
 
-Assim como o comando ``composer install`` instala os pacotes **PHP** definidos em ``compose.json``, o comando ``yarn install`` instala os pacotes **NPM** definidos em ``package.json`` :whale:.
+Assim como o comando ``composer install`` instala os pacotes **PHP** definidos em ``compose.json``, o comando ``yarn install`` instala os pacotes **NPM** definidos em ``package.json``: :whale:
 
 	yarn install
 
@@ -233,7 +233,7 @@ Para isso, vamos aos passos de configuração:
 
 **Passo 2**, substitua o [link simbólico](https://www.shellhacks.com/symlink-create-symbolic-link-linux/)  de ``docker-compose.yaml`` (que atualmente aponta para ``Resources/docker-compose.dev.yaml``) para ``Resources/docker-compose.extra-services.yaml`` : :computer:
 
- 	ln -snf Resources/docker-compose.extra-services.yaml ./docker-compose.yaml
+	ln -snf Resources/docker-compose.extra-services.yaml ./docker-compose.yaml
 
 **Passo 3**, levante os Serviços : :computer:
 
@@ -266,9 +266,7 @@ Para montar esse servidor usamos basicamente 4 ``services``:
 
 Nossa aplicação, utilizando um drive específico ([php-amqplib/php-amqplib](https://github.com/php-amqplib/php-amqplib)), envia os logs para um servidor [RabbitMQ](https://www.rabbitmq.com/) que os guarda em uma fila.
 
-O [Logstash](https://www.elastic.co/products/logstash) conecta no **RabbitMQ** e coleta os registros de log, (transforma-os se necessário) e grava-os no [Elasticsearch](https://www.elastic.co/).
-
-O [Kibana](https://www.elastic.co/products/kibana) é uma interface de leitura e exploração destes logs que estão gravados no **Elasticsearch**.
+O [Logstash](https://www.elastic.co/products/logstash) conecta no **RabbitMQ** e coleta os registros de log, (transforma-os se necessário) e grava-os no [Elasticsearch](https://www.elastic.co/). O [Kibana](https://www.elastic.co/products/kibana) é uma interface de leitura e exploração destes logs que estão gravados no **Elasticsearch**.
 
 #### Levantando a stack
 
@@ -301,9 +299,8 @@ Para o nosso tutorial, o mais importante é que você consiga visualizar os logs
 
 ![Kibana dashboard image](https://meta.gpupo.com/dockerized-helloworld/img/kibana.png)
 
----
 
-:memo: O [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) está preparado para também enviar os logs do NGINX para um servidor de logs, em um ambiente de produção.
+:memo: Essa mesma lógica de envio de logs para um local centralizado pode ser adotada por qualquer software, não somente Apps PHP. O [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) está preparado para também enviar os logs do NGINX para um servidor de logs, em um ambiente de produção.
 
 #### Algumas dicas importantes
 
@@ -379,7 +376,7 @@ Se você ainda não está familiarizado com as PSRs, saiba que existem PSRs para
 
 Existem também propostas em draft para padronização dos docblock de documentação ([PSR-5](https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md)) e uma interface para requisições HTTP ([PSR-7](https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md))
 
-Mais informações leia o[FAQ](https://www.php-fig.org/faqs/) e visite o [repositório no GitHub](https://github.com/php-fig/fig-standards) com os padrões já aceitos.
+Mais informações leia o [FAQ](https://www.php-fig.org/faqs/) e visite o [repositório no GitHub](https://github.com/php-fig/fig-standards) com os padrões já aceitos.
 
 #### Principais padrões de escrita adotados neste projeto
 
@@ -448,15 +445,23 @@ Se você executar um ``git diff`` verá algo assim:
 ```
 Nesse diff que o arquivo recebeu modificações:
 
-* Adicionou a declaração ``declare(strict_types=1);``
-* Adicionou o HEADER padrão a todos os arquivos PHP do projeto
-* Organizou em ordem alfabética as declarações de uso,
-* Escreveu com um ``use`` por linha, como pede o CS configurado
-* Removeu o ``use PDO`` pois a classe PDO não recebe nenhum uso nas linhas do arquivo
-* Trocou as ``{`` de lugar, de acordo com o codding style definido
-* Adicionou ponto final a linhas de documentação
+* Adicionou a declaração ``declare(strict_types=1);``.
+* Adicionou o *HEADER* padrão a todos os arquivos PHP do projeto.
+* Organizou em ordem alfabética as declarações de uso.
+* Escreveu com um ``use`` por linha, como pede o CS configurado.
+* Removeu o ``use PDO`` pois a classe PDO não recebe nenhum uso nas linhas do arquivo.
+* Trocou as ``{`` de lugar, de acordo com o codding style definido.
+* Adicionou ponto final a linhas de documentação.
 
 :memo: É uma boa prática você utilizar o ``make php-cs-fixer`` após terminar o desenvolvimento de uma feature PHP.
+
+### PHPCBF
+
+...
+
+### PHPMD
+
+O [PHPMD](https://phpmd.org/) - Ruleset for PHP Mess Detector that enforces coding standards é configurado no arquivo .phpmd.xml
 
 ---
 
