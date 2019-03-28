@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /pt_BR.html
 ---
 # Main Quest
 
@@ -272,9 +273,10 @@ O [Logstash](https://www.elastic.co/products/logstash) conecta no **RabbitMQ** e
 
 Para nossa :whale: **Dockerized Application** não é interessante responsabilizar-se pela configuração da **stack RELK**, então eu preparei este conjunto de serviços em um lugar secreto, que você simplesmente vai levantar com o seguinte setup: :computer:
 
+
 	make relk@up
 
-Criação de index Logstash: :whale:
+Logstash config: :whale:
 
 ```bash
 curl -XPOST -D- 'http://kibana:5601/api/saved_objects/index-pattern' \
@@ -291,14 +293,13 @@ Agora vamos testar o envio de logs: :whale:
 
 Se tudo correu bem você terá acesso aos serviços:
 
-* [RabbitMQ](http://dockerized-helloworld.localhost:15672/), usuário ``admin``, senha ``d0ck3r1zzd``
+* [RabbitMQ](http://dockerized-helloworld.localhost:15672/), user ``admin``, password ``d0ck3r1zzd``
 * [Kibana](http://dockerized-helloworld.localhost:5601)
 * [Logstash API](http://dockerized-helloworld.localhost:9600/_node/hot_threads?human=true)
 
 Para o nosso tutorial, o mais importante é que você consiga visualizar os logs gerados pela aplicação e para isso deverá acessar o Kibana e escolher no menu o item **Discover**. Você deverá ver uma tela semelhante a essa:
 
 ![Kibana dashboard image](https://meta.gpupo.com/dockerized-helloworld/img/kibana.png)
-
 
 :memo: Essa mesma lógica de envio de logs para um local centralizado pode ser adotada por qualquer software, não somente Apps PHP. O [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) está preparado para também enviar os logs do NGINX para um servidor de logs, em um ambiente de produção.
 
@@ -320,7 +321,7 @@ Para o nosso tutorial, o mais importante é que você consiga visualizar os logs
 
 De fato você já está acostumado a persistir fora da aplicação informações como os dados no banco relacional.
 Um artefato importante a ser persistido externamente são arquivos estáticos enviados por usuários a partir de formulários de upload por exemplo.
-Para atender esta demanda eu uso o projeto [Content Butler](https://github.com/gpupo/content-butler) associado ao [Doctrine PHP Content Repository ODM](https://www.doctrine-project.org/projects/doctrine-phpcr-odm/en/latest/index.html) que trata estes assets como objetos e os gerencia em um servidor [Apache Jackrabbit](https://jackrabbit.apache.org/jcr/index.html). 
+Para atender esta demanda eu uso o projeto [Content Butler](https://github.com/gpupo/content-butler) associado ao [Doctrine PHP Content Repository ODM](https://www.doctrine-project.org/projects/doctrine-phpcr-odm/en/latest/index.html) que trata estes assets como objetos e os gerencia em um servidor [Apache Jackrabbit](https://jackrabbit.apache.org/jcr/index.html).
 
 ---
 
@@ -372,7 +373,7 @@ Experimente o target ``bash`` que vai lhe lançar diretamente no bash do serviç
 
 A imagem [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/gpupo/container-orchestration/tags) possui ferramentas de [quality assurance](https://en.wikipedia.org/wiki/Software_quality_assurance) que nos ajudam a manter a qualidade da escrita e da engenharia.
 
-### Coding styles
+### Coding Standard
 
 Neste projeto seguimos [PHP Standards Recommendations](https://www.php-fig.org/psr/)(PSR) e também padrões sugeridos pelo projeto [Symfony](https://symfony.com/) com objetivo facilitar a reutilização de código entre os diversos projetos que implementem determinado padrão.
 
@@ -402,6 +403,7 @@ Rode o [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer): :whale:
 	make php-cs-fixer
 
 Se você executar um ``git diff`` verá algo assim:
+
 
 ```diff
 <?php
@@ -450,6 +452,7 @@ Se você executar um ``git diff`` verá algo assim:
       */
 
 ```
+
 Nesse diff que o arquivo recebeu modificações:
 
 * Adicionou a declaração ``declare(strict_types=1);``.
@@ -497,6 +500,7 @@ Se quisermos criar um teste unitário para o objeto ``Gpupo\DockerizedHelloworld
 	vendor/bin/developer-toolbox generate --class='Gpupo\DockerizedHelloworld\Entity\Person'
 
 O comando acima gerará o arquivo ``tests/Entity/PersonTest.php`` que deve conter um conteúdo semelhante a este:
+
 
 ```PHP
 //...
@@ -554,6 +558,7 @@ class PersonTest extends CoreTestCase
     }
 }
 ```
+
 
 Execute os testes Unitários: :whale:
 
