@@ -639,6 +639,10 @@ Depois de carregar milhões de bits em imagens Docker, talvez você precise libe
 
 	docker-remove-all
 
+
+---
+#### Table of contents
+
 <div id="inline_toc" markdown="1">
 
 * TOC
@@ -646,6 +650,7 @@ Depois de carregar milhões de bits em imagens Docker, talvez você precise libe
 
 </div>
 
+---
 
 ![Cya image](https://meta.gpupo.com/dockerized-helloworld/img/pizzatime.jpg)
 
