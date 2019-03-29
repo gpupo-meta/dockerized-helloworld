@@ -639,6 +639,13 @@ Depois de carregar milhões de bits em imagens Docker, talvez você precise libe
 
 	docker-remove-all
 
+<div id="inline_toc" markdown="1">
+
+* TOC
+{:toc}
+
+</div>
+
 
 ![Cya image](https://meta.gpupo.com/dockerized-helloworld/img/pizzatime.jpg)
 

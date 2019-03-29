@@ -159,4 +159,6 @@ Os arquivos gerados a partir da [shell session](https://superuser.com/questions/
 
 {% include 'templates/pt_BR/final-considerations.twig.md' %}
 
+{% include 'templates/includes/inline_toc.md' %}
+
 {% endblock %}
