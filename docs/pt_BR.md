@@ -85,6 +85,8 @@ Para padronizar e facilitar automatização, o serviço do interpretador sempre 
 
 Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/Hands_on) de acordo com essa explicação.
 
+![Image](https://meta.gpupo.com/dockerized-helloworld/img/dockerized-stack.jpg)
+
 ---
 
 ## Rodando a aplicação

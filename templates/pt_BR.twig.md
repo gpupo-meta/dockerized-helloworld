@@ -31,6 +31,7 @@ Ainda no nosso exemplo, baseado na conversão de uma stack LAMP, optamos por uti
 
 Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/Hands_on) de acordo com essa explicação.
 
+{{ macros.add_img('dockerized-stack.jpg') }}
 ---
 
 ## Rodando a aplicação
