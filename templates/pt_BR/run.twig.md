@@ -8,7 +8,7 @@
 
 **Passo 2**, clonar e levantar este projeto: :computer:
 
-	git clone git@github.com:gpupo-meta/dockerized-helloworld.git;
+	git clone https://github.com/gpupo-meta/dockerized-helloworld.git;
 	cd dockerized-helloworld;
 	docker-compose up -d;
 

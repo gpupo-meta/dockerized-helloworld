@@ -101,7 +101,7 @@ Este atual projeto possibilita um [mão na massa](https://en.wikipedia.org/wiki/
 
 **Passo 2**, clonar e levantar este projeto: :computer:
 
-	git clone git@github.com:gpupo-meta/dockerized-helloworld.git;
+	git clone https://github.com/gpupo-meta/dockerized-helloworld.git;
 	cd dockerized-helloworld;
 	docker-compose up -d;
 
@@ -644,10 +644,8 @@ Depois de carregar milhões de bits em imagens Docker, talvez você precise libe
 #### Table of contents
 
 <div id="inline_toc" markdown="1">
-
 * TOC
 {:toc}
-
 </div>
 
 ---
