@@ -114,4 +114,10 @@ build:
 
 ## Run localhost github page on port 4000
 server@run:
-	source .env && cd docs && $(DC) up
+	cd docs && $(DC) up -d;
+	printf "${COLOR_COMMENT}Done${COLOR_RESET}\n";
+
+## Stop localhost github page on port 4000
+server@down:
+	cd docs && $(DC) down;
+	printf "${COLOR_COMMENT}Done${COLOR_RESET}\n";

@@ -14,3 +14,4 @@ public/build
 
 #This Project only:
 tests/Entity/PersonTest.php
+docs/.env.local

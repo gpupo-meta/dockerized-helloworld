@@ -4,6 +4,7 @@ services:
         image: starefossen/github-pages
         env_file:
             - .env
+            - .env.local
         volumes:
             - $PWD/:/usr/src/app
         ports:
