@@ -1,3 +1,4 @@
+repository: gpupo-meta/dockerized-helloworld
 highlighter: rouge
 markdown: kramdown
 kramdown:
@@ -7,3 +8,6 @@ kramdown:
 plugins:
   - jemoji
   - jekyll-redirect-from
+  - jekyll-github-metadata
+  - jekyll-mentions
+  - jekyll-sitemap

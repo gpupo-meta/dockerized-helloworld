@@ -114,4 +114,4 @@ build:
 
 ## Run localhost github page on port 4000
 server@run:
-	docker run -t --rm -v "$PWD/docs":/usr/src/app -p "4000:4000" starefossen/github-pages
+	source .env && cd docs && $(DC) up
