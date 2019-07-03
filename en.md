@@ -1,4 +1,9 @@
+
+* [Versão em Portugues](https://meta.gpupo.com/dockerized-helloworld/en.html)
+* [English Version](https://meta.gpupo.com/dockerized-helloworld/pt-BR.html)
+
 # Main Quest
+
 
 This tutorial/project exemplify how a WEB application can run into containers, introduce the use of especifics auxialiary tools for web project development, but ***do not*** deals with [creation and manuntence Docker's image](https://opensource.gpupo.com/container-orchestration/), it is not necessarily a guide wihtout bias that search a generic instruction but, well associated to my work mode, including my onw choose tools and, although be helpful for those who serch information to configure their own projects, focuses in explain the resources and tecnologies, allowing that new projects contributors that already adopts this structure may understand, improve and execute resources already configureted.
 
@@ -44,7 +49,7 @@ This exemplify a  common solution, but let's go deeper on our work way:
 
 If each service set have a **Webserver** that answer on programmer machine's port 80, so only one project can be up at time, or else each project needs a exclusive port. Imagine the caothic situation of this in a prodoction ambient. To solve this, each project recieves as a parameter a subdomain (ex: http://helloworld.localhost) and your webserver **do not** answer in a public port, but connects to service [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/) that will do due routing as soon as it is required from configured broswer subdomain.
 
-Also in this point, we have a question to be treated: **Data Base** service. In a Development ambient we need a funcional tests local base, development, unitary tests, etc... but in production ambient we do not need data base service because It runs in a different application local. 
+Also in this point, we have a question to be treated: **Data Base** service. In a Development ambient we need a funcional tests local base, development, unitary tests, etc... but in production ambient we do not need data base service because It runs in a different application local.
 
 So we have two sets of services: one to development and other reduced for production ambient.
 
@@ -115,7 +120,7 @@ http://dockerized-helloworld.localhost/phpinfo.php  you can acess informations a
 
 You will see that when executing this comand above is released to virtualized ambient where current directory is ``/var/www/app``.
 
-If you list the directory's files ``/var/www/app`` you will see that they are **exactly** the same from this project root. 
+If you list the directory's files ``/var/www/app`` you will see that they are **exactly** the same from this project root.
 
 It happens for the fact that [we maped the directory](https://docs.docker.com/compose/compose-file/#volumes) on ``volumes`` existents parametrs on files __docker-compose*.yaml__
 
@@ -189,7 +194,7 @@ Of course, for evething works, necessary configuration were made in ``.babelrc``
 
 ### SASS
 
-The [Sass](https://sass-lang.com/) is a based CSS language that, after compiled, generate the traditional CSS. 
+The [Sass](https://sass-lang.com/) is a based CSS language that, after compiled, generate the traditional CSS.
 
 The ``assets/scss/app.scss`` file includes all of Bootstrap 4 CSS (Avaiable in packages configuration and inatlled for ``yarn install``) and some compiled example code on path ``public/build/app.min.css``.
 
@@ -376,7 +381,7 @@ The image [gpupo/container-orchestration:symfony-dev](https://hub.docker.com/r/g
 
 ### Coding Standard
 
-In this project we follow [PHP Standards Recommendations](https://www.php-fig.org/psr/)(PSR) and also 
+In this project we follow [PHP Standards Recommendations](https://www.php-fig.org/psr/)(PSR) and also
 suggested patterns for the [Symfony](https://symfony.com/) project with the goal of make easier the reuse of code betwen many project that implements detemrninaded pattern.
 
 If you are not acquainted with PSRs yet, know that exists PSRs for implementaions of [autoload](http://br1.php.net/manual/en/function.autoload.php)[ (](http://www.php-fig.org/psr/psr-4/)[PSR-4](http://www.php-fig.org/psr/psr-4/)), code styles suggests, like key position, identation ([use tabs or spaces?](http://www.jwz.org/doc/tabs-vs-spaces.html)) ([PSR-1](http://www.php-fig.org/psr/psr-1/) e [PSR-2](http://www.php-fig.org/psr/psr-2/)).
@@ -395,7 +400,7 @@ More informations read [FAQ](https://www.php-fig.org/faqs/) and make us a visit 
 
 #### php-cs-fixer
 
-A very important tool is the [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) 
+A very important tool is the [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
 that will align the write code according to the default rules selected for the project.
 In the [.php_cs.dist](https://github.com/gpupo-meta/dockerized-helloworld/blob/master/.php_cs.dist) file is configureted this rules set.
 

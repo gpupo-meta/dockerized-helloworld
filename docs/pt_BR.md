@@ -2,6 +2,10 @@
 layout: default
 permalink: /pt_BR.html
 ---
+
+* [Versão em Portugues](https://meta.gpupo.com/dockerized-helloworld/en.html)
+* [English Version](https://meta.gpupo.com/dockerized-helloworld/pt-BR.html)
+
 # Main Quest
 
 Este tutorial/projeto exemplifica como uma aplicação WEB pode rodar em containers, introduz o uso de ferramentas específicas auxiliares para o desenvolvimento de projeto web, mas
