@@ -3,8 +3,8 @@ layout: default
 permalink: /es.html
 ---
 
-* [Versão em Portugues](https://meta.gpupo.com/dockerized-helloworld/en.html)
-* [English Version](https://meta.gpupo.com/dockerized-helloworld/pt-BR.html)
+* [Versão em Portugues](https://meta.gpupo.com/dockerized-helloworld/pt_BR.html)
+* [English Version](https://meta.gpupo.com/dockerized-helloworld/en.html)
 
 # Main Quest
 
